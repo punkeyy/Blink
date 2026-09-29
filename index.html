@@ -548,14 +548,14 @@
                 </div>
                 <div class="flex flex-wrap gap-6 text-stone-400 font-medium">
                     <button id="openTermsBtn" type="button" class="hover:text-white transition-colors focus:outline-none">커뮤니티 이용약관</button>
-                    <button id="openPrivacyBtn" type="button" class="hover:text-white font-bold text-stone-200 transition-colors focus:outline-none">개인정보 처리방침</button>
-                    <a href="mailto:support@blink.kr?subject=%5BBlink%20%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0%5D%20%EB%AC%B8%EC%9D%98%20%EB%B0%8F%20%EC%A0%9C%EC%95%80" class="hover:text-white transition-colors">문의 및 제안하기</a>
+                    <button id="openPrivacyBtn" type="button" class="hover:text-white transition-colors focus:outline-none">개인정보 처리방침</button>
+                    <button id="openInquiryBtn" type="button" class="hover:text-white transition-colors focus:outline-none">문의 및 제안하기</button>
                 </div>
             </div>
 
             <div class="pt-6 space-y-2 leading-relaxed text-stone-500">
                 <p class="font-medium text-stone-400">블링크 커뮤니티는 상담 전문가를 위한 무료 프라이빗 교류 공간입니다.</p>
-                <p>문의사항 및 제휴/게시물 관련 문의: <a href="mailto:support@blink.kr" class="text-stone-400 hover:underline">support@blink.kr</a></p>
+                <p>문의사항 및 제휴/게시물 관련 문의: <a href="mailto:blinkcomu@gmail.com" class="text-stone-400 hover:underline">blinkcomu@gmail.com</a></p>
                 <p class="pt-3 text-stone-600 font-en">© 2026 Blink Community. All rights reserved.</p>
             </div>
         </div>
@@ -822,6 +822,45 @@
             <div class="pt-3 text-right">
                 <button id="confirmPrivacyModal" class="px-6 py-2.5 rounded-xl bg-brand-600 text-white font-bold text-xs sm:text-sm hover:bg-brand-700 transition-colors">
                     확인 및 닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inquiry & Suggestion Modal -->
+    <div id="inquiryModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
+            <button id="closeInquiryModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">문의 및 제안하기</h2>
+                <p class="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">
+                    블링크 커뮤니티 관련 문의사항이나 제안하고 싶은 내용을 보내주세요.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-5">
+                <div class="text-xs font-bold text-slate-500 mb-1">공식 대표 이메일</div>
+                <div class="flex items-center justify-between gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+                    <span id="inquiryEmailText" class="font-en font-bold text-sm text-brand-700 select-all">blinkcomu@gmail.com</span>
+                    <button id="copyEmailBtn" type="button" class="px-3 py-1.5 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-bold transition-colors shrink-0">
+                        주소 복사
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <a href="mailto:blinkcomu@gmail.com?subject=%5BBlink%20%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B3%5D%20%EB%AC%B8%EC%9D%98%20%EB%B0%8F%20%EC%A0%9C%EC%95%80" target="_blank" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors shadow-md shadow-brand-600/20 text-xs sm:text-sm flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span>이메일 앱으로 메일 작성</span>
+                </a>
+                <button id="closeInquiryBtn" type="button" class="w-full py-2.5 rounded-xl bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 transition-colors text-xs">
+                    닫기
                 </button>
             </div>
         </div>
@@ -1126,7 +1165,52 @@
                 });
             }
 
-            // Default seed data if database is empty
+            // Default seed data with 50 posts spanning 5 pages
+            const seedTopics = [
+                { cat: "현장고민", title: "비자발적 아동 내담자 상담 시 초기 라포 형성 노하우가 궁금합니다.", body: "부모님의 등쌀에 밀려 센터에 방문한 초등 고학년 아동 내담자입니다. 3회기째 말을 거의 하지 않고 침묵을 유지하고 있네요.\n놀이치료 도구나 미술 매체를 활용해 보아도 방어가 강한 상태인데, 선생님들께서는 비자발적 아동 내담자 상담 초기 라포 형성 시 어떤 접근을 선호하시나요?" },
+                { cat: "피드백요청", title: "HTP 그림검사 결과 중 과도한 음영 표현 사례에 대한 조언 구합니다.", body: "성인 청년 내담자의 HTP 검사 중 지붕과 기둥 전체에 매우 빽빽하고 짙은 음영 처리가 관찰되었습니다.\n기타 검사(SCT, MMPI-2) 결과와 조합하여 해석 중인데, 과도한 지붕 음영을 공포 및 불안 완화 기제로 보시는지 동료 선생님들의 의견을 여쭙고 싶습니다." },
+                { cat: "질의응답", title: "정신건강복지센터 및 공공기관 연계 시 부모 동의서 관련 서식 문의", body: "청소년 내담자의 고위험군 진단으로 인해 지역 정신건강복지센터로 연계하려고 합니다.\n보호자가 동의서 서식 작성에 부담을 느끼시는데, 기관 연계 시 활용하기 좋은 간소화된 통합 동의서 서식을 공유해주실 수 있나요?" },
+                { cat: "사례연구", title: "경계선 인격특성(BPD) 내담자의 상담 경계 설정(Boundary Setting)", body: "회기 외 시간에 긴급 대화 및 문자를 지속적으로 요청하시는 경계선 특성의 내담자 사례입니다.\n상담 관계의 안정성을 지키면서도 내담자가 버림받았다고 느끼지 않게 경계를 명확히 세우는 구체적인 발화법과 수퍼비전 기법 교류를 희망합니다." },
+                { cat: "정보공유", title: "광주·전남 지역 2026년 청소년상담복지센터 바우처 수가 변경 안내", body: "올해 적용되는 광주 및 전남 시군구 청소년상담 바우처 지원금 및 본인부담금 체계가 일부 조정되었습니다.\n프리랜서 및 센터 운영 선생님들께 참고가 되도록 정리된 가이드라인 요약본을 공유합니다." },
+                { cat: "현장고민", title: "성인 소시오패스적 성향 내담자와의 치료적 동맹 형성의 어려움", body: "타인 조종 욕구가 강하고 상담사를 테스트하려는 성인 내담자입니다.\n진정성 있는 대화로 끌어들이기 위한 유용한 전략이나 추천할 만한 전문 서적이 있을까요?" },
+                { cat: "질의응답", title: "MMPI-2 6-8/8-6 척도 상승 프로파일 임상적 해석 조언", body: "Paranoid 및 Schizoid 경향성이 함께 보이는 20대 대학생 내담자 사례입니다.\n현실 검증력 평가 시 유의할 점과 초기 개입 시 라포 형성 주의사항을 공유받고 싶습니다." },
+                { cat: "피드백요청", title: "청소년 자해 행동 개입 시 부모 소통 가이드라인 모범 사례", body: "자해 사실을 부모님께 알리는 과정에서 부모의 과도한 질책으로 내담자 상태가 악화되는 경우가 있습니다.\n부모 상담 시 유연하게 전달하는 스크립트나 노하우가 있을까요?" },
+                { cat: "사례연구", title: "복합 외상(Complex PTSD) 내담자의 안정화 단계 기법 적용", body: "어린 시절 장기적 학대 경험이 있는 성인 내담자입니다.\n재외상화를 방지하기 위한 Grounding(접지) 기법과 신체화 증상 완화 접근법에 대해 논의하고 싶습니다." },
+                { cat: "정보공유", title: "2026년도 심리상담사 자격 보수교육 및 학회 수퍼비전 인정 일정", body: "올해 하반기 진행되는 주요 학회 보수교육 인정 일정 및 수퍼비전 인정 기준 변경사항을 정리하여 공유해드립니다." }
+            ];
+
+            const surnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍"];
+
+            function generateDefaultPosts() {
+                const posts = [];
+                const startDate = new Date(2026, 2, 1).getTime(); // 2026.03.01
+                const endDate = new Date(2026, 8, 29).getTime();  // 2026.09.29
+
+                for (let i = 0; i < 50; i++) {
+                    const template = seedTopics[i % seedTopics.length];
+                    const surname = surnames[i % surnames.length];
+                    const timestamp = endDate - Math.floor((endDate - startDate) * (i / 49));
+                    const dateObj = new Date(timestamp);
+                    const y = dateObj.getFullYear();
+                    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const d = String(dateObj.getDate()).padStart(2, '0');
+                    
+                    posts.push({
+                        id: `default-post-${i + 1}`,
+                        category: template.cat,
+                        author: `${surname}**`,
+                        title: i < 10 ? template.title : `[${template.cat}] ${template.title.split(' ')[0]} ${i + 1}번째 사례 교류 및 질문`,
+                        date: `${y}.${m}.${d}`,
+                        body: template.body,
+                        createdAt: timestamp
+                    });
+                }
+                return posts;
+            }
+
+            const defaultCommunityPosts = generateDefaultPosts();
+            let communityPosts = [...defaultCommunityPosts];
+
             const defaultUserDatabase = [
                 { username: "test", password: "1234", name: "김선생", email: "test@blink.kr", phone: "010-0000-0000", status: "APPROVED", job: "전문 심리상담사", createdAt: 1000 },
                 { username: "pending", password: "1234", name: "이신청", email: "pending@blink.kr", phone: "010-1111-2222", status: "PENDING", job: "임상심리사", createdAt: 2000 }
@@ -1149,6 +1233,30 @@
                 }
             }, (err) => console.error("Error fetching users:", err));
 
+            // Realtime sync for posts with fallback guarantee
+            onSnapshot(postsColRef, (snapshot) => {
+                if (snapshot.empty) {
+                    defaultCommunityPosts.forEach(async (p) => {
+                        try {
+                            await addDoc(postsColRef, p);
+                        } catch(e) {}
+                    });
+                } else {
+                    const fetched = [];
+                    snapshot.forEach(docSnap => {
+                        fetched.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    fetched.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                    if (fetched.length > 0) {
+                        communityPosts = fetched;
+                    }
+                }
+                renderCommunityBoard();
+            }, (err) => {
+                console.warn("Firestore fallback active, using local default posts:", err);
+                renderCommunityBoard();
+            });
+
             let currentUser = null;
 
             const applyModal = document.getElementById('applyModal');
@@ -1157,12 +1265,14 @@
             const statusModal = document.getElementById('statusModal');
             const termsModal = document.getElementById('termsModal');
             const privacyModal = document.getElementById('privacyModal');
+            const inquiryModal = document.getElementById('inquiryModal');
 
             const openLoginBtn = document.getElementById('openLoginBtn');
             const openLoginBtnMobile = document.getElementById('openLoginBtnMobile');
             const openFindModal = document.getElementById('openFindModal');
             const openTermsBtn = document.getElementById('openTermsBtn');
             const openPrivacyBtn = document.getElementById('openPrivacyBtn');
+            const openInquiryBtn = document.getElementById('openInquiryBtn');
             const closeApplyModal = document.getElementById('closeApplyModal');
             const closeLoginModal = document.getElementById('closeLoginModal');
             const closeFindModal = document.getElementById('closeFindModal');
@@ -1171,6 +1281,9 @@
             const confirmTermsModal = document.getElementById('confirmTermsModal');
             const closePrivacyModal = document.getElementById('closePrivacyModal');
             const confirmPrivacyModal = document.getElementById('confirmPrivacyModal');
+            const closeInquiryModal = document.getElementById('closeInquiryModal');
+            const closeInquiryBtn = document.getElementById('closeInquiryBtn');
+            const copyEmailBtn = document.getElementById('copyEmailBtn');
             const switchModalToApply = document.getElementById('switchModalToApply');
 
             const communityApplyForm = document.getElementById('communityApplyForm');
@@ -1239,6 +1352,7 @@
 
             if (openTermsBtn) openTermsBtn.addEventListener('click', () => showModal(termsModal));
             if (openPrivacyBtn) openPrivacyBtn.addEventListener('click', () => showModal(privacyModal));
+            if (openInquiryBtn) openInquiryBtn.addEventListener('click', () => showModal(inquiryModal));
 
             if (switchModalToApply) {
                 switchModalToApply.addEventListener('click', (e) => {
@@ -1256,8 +1370,27 @@
             if (confirmTermsModal) confirmTermsModal.addEventListener('click', () => hideModal(termsModal));
             if (closePrivacyModal) closePrivacyModal.addEventListener('click', () => hideModal(privacyModal));
             if (confirmPrivacyModal) confirmPrivacyModal.addEventListener('click', () => hideModal(privacyModal));
+            if (closeInquiryModal) closeInquiryModal.addEventListener('click', () => hideModal(inquiryModal));
+            if (closeInquiryBtn) closeInquiryBtn.addEventListener('click', () => hideModal(inquiryModal));
 
-            [applyModal, loginModal, findModal, statusModal, termsModal, privacyModal].forEach(modal => {
+            if (copyEmailBtn) {
+                copyEmailBtn.addEventListener('click', () => {
+                    const emailText = "blinkcomu@gmail.com";
+                    const tempInput = document.createElement("input");
+                    tempInput.value = emailText;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(tempInput);
+
+                    copyEmailBtn.innerText = "복사 완료!";
+                    setTimeout(() => {
+                        copyEmailBtn.innerText = "주소 복사";
+                    }, 2000);
+                });
+            }
+
+            [applyModal, loginModal, findModal, statusModal, termsModal, privacyModal, inquiryModal].forEach(modal => {
                 if (modal) {
                     modal.addEventListener('click', (e) => {
                         if (e.target === modal) hideModal(modal);
@@ -1396,31 +1529,6 @@
                     });
                 });
             }
-
-            const defaultCommunityPosts = [
-                { category: "현장고민", author: "김**", title: "비자발적 아동 내담자 상담 시 초기 라포 형성 노하우가 궁금합니다.", date: "2026.09.29", body: "부모님의 등쌀에 밀려 센터에 방문한 초등 고학년 아동 내담자입니다. 3회기째 말을 거의 하지 않고 침묵을 유지하고 있네요.\n놀이치료 도구나 미술 매체를 활용해 보아도 방어가 강한 상태인데, 선생님들께서는 비자발적 아동 내담자 상담 초기 라포 형성 시 어떤 접근을 선호하시나요?", createdAt: 50 },
-                { category: "피드백요청", author: "이**", title: "HTP 그림검사 결과 중 과도한 음영 표현 사례에 대한 조언 구합니다.", date: "2026.09.27", body: "성인 청년 내담자의 HTP 검사 중 지붕과 기둥 전체에 매우 빽빽하고 짙은 음영 처리가 관찰되었습니다.\n기타 검사(SCT, MMPI-2) 결과와 조합하여 해석 중인데, 과도한 지붕 음영을 공포 및 불안 완화 기제로 보시는지, 수퍼비전 전 동료 선생님들의 다각적 의견을 여쭙고 싶습니다.", createdAt: 49 },
-                { category: "질의응답", author: "박**", title: "정신건강복지센터 및 공공기관 연계 시 부모 동의서 관련 서식 문의", date: "2026.09.23", body: "청소년 내담자의 고위험군 진단으로 인해 지역 정신건강복지센터로 연계하려고 합니다.\n보호자가 동의서 서식 작성에 부담을 느끼시는데, 기관 연계 시 활용하기 좋은 간소화된 통합 동의서 서식을 혹시 공유해 주실 수 있나요?", createdAt: 48 },
-                { category: "사례연구", author: "최**", title: "경계선 인격특성(BPD) 내담자의 상담 경계 설정(Boundary Setting)", date: "2026.09.20", body: "회기 외 시간에 긴급 대화 및 문자를 지속적으로 요청하시는 경계선 특성의 내담자 사례입니다.\n상담 관계의 안정성을 지키면서도 내담자가 버림받았다고 느끼지 않게 경계를 명확히 세우는 구체적인 발화법과 구체적 기법 교류를 희망합니다.", createdAt: 47 },
-                { category: "정보공유", author: "정**", title: "광주·전남 지역 2026년 청소년상담복지센터 바우처 수가 변경 안내", date: "2026.09.16", body: "올해 상반기 적용되는 광주 및 전남 시군구 청소년상담 바우처 지원금 및 본인부담금 체계가 일부 조정되었습니다.\n프리랜서 및 센터 운영 선생님들께 참고가 되도록 정리된 가이드라인 요약본을 공유합니다.", createdAt: 46 }
-            ];
-
-            const communityPosts = [];
-
-            onSnapshot(postsColRef, (snapshot) => {
-                if (snapshot.empty) {
-                    defaultCommunityPosts.forEach(async (p) => {
-                        await addDoc(postsColRef, p);
-                    });
-                } else {
-                    communityPosts.length = 0;
-                    snapshot.forEach(docSnap => {
-                        communityPosts.push({ id: docSnap.id, ...docSnap.data() });
-                    });
-                    communityPosts.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-                    renderCommunityBoard();
-                }
-            }, (err) => console.error("Error fetching posts:", err));
 
             let currentCommCategory = 'ALL';
             let currentCommSearch = '';
