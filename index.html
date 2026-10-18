@@ -180,9 +180,9 @@
 
                     <div class="grid grid-cols-2 gap-4 sm:gap-6 max-w-xl mx-auto mb-12">
                         <div class="bg-white/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-stone-200/80 shadow-sm text-center transform hover:-translate-y-1 transition-transform">
-                            <div class="text-xs sm:text-sm font-medium text-slate-500 mb-1">누적 이용 전문가</div>
-                            <div class="text-2xl sm:text-4xl font-extrabold text-brand-600 font-en">18,000+</div>
-                            <div class="text-[11px] sm:text-xs text-slate-400 mt-1">명 이상의 선생님</div>
+                            <div class="text-xs sm:text-sm font-medium text-slate-500 mb-1">전남·광주 통합 상담 네트워크</div>
+                            <div class="text-2xl sm:text-4xl font-extrabold text-brand-600 font-en">1,200+</div>
+                            <div class="text-[11px] sm:text-xs text-slate-400 mt-1">지역 상담 전문가 선생님 활용 중</div>
                         </div>
                         <div class="bg-white/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-stone-200/80 shadow-sm text-center transform hover:-translate-y-1 transition-transform">
                             <div class="text-xs sm:text-sm font-medium text-slate-500 mb-1">선생님과 함께한 시간</div>
@@ -572,7 +572,7 @@
                 <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 font-bold text-xs mb-2">프라이빗 전문가 네트워크</span>
                 <h2 class="text-2xl font-bold text-slate-900">블링크 커뮤니티 참여 신청서</h2>
                 <p class="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">
-                    상담 전문가 인증 후 승인 처리됩니다. 신청서 작성 후 최종 운영자 승인이 완료되면 입력하신 계정으로 로그인하실 수 있습니다.
+                    상담 전문가 인증 후 승인 처리됩니다. 신청서 작성 후 입력하신 계정으로 바로 로그인하실 수 있습니다.
                 </p>
             </div>
 
@@ -691,10 +691,13 @@
                 <button id="switchModalToApply" class="text-brand-600 font-bold underline ml-1 hover:text-brand-700">커뮤니티 참여 신청하기</button>
             </div>
 
-            <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-500 leading-normal">
-                <span class="font-bold text-slate-700">💡 테스트용 샘플 계정:</span><br/>
-                • 승인완료 계정: <code class="text-brand-700 font-bold">test</code> / <code class="text-brand-700 font-bold">1234</code><br/>
-                • 승인대기 계정: <code class="text-amber-700 font-bold">pending</code> / <code class="text-amber-700 font-bold">1234</code>
+            <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-500 leading-normal space-y-1">
+                <div class="font-bold text-slate-700 mb-1">💡 테스트용 프리셋 계정 목록:</div>
+                <div>• 일반 상담사: <code class="text-brand-700 font-bold">test</code> / <code class="text-brand-700 font-bold">1234</code></div>
+                <div>• 센터장 계정: <code class="text-brand-700 font-bold">director</code> / <code class="text-brand-700 font-bold">1234</code></div>
+                <div>• 임상심리사: <code class="text-brand-700 font-bold">clinical</code> / <code class="text-brand-700 font-bold">1234</code></div>
+                <div>• 수련생 계정: <code class="text-brand-700 font-bold">trainee</code> / <code class="text-brand-700 font-bold">1234</code></div>
+                <div>• 승인대기 계정: <code class="text-amber-700 font-bold">pending</code> / <code class="text-amber-700 font-bold">1234</code></div>
             </div>
         </div>
     </div>
@@ -989,50 +992,128 @@
         </div>
     </div>
 
-    <!-- JavaScript Logic with Firebase Persistent Firestore Storage -->
+    <!-- Application Logic with LocalStorage Persistence -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Default preset user accounts
+        const defaultUserDatabase = [
+            { username: "test", password: "1234", name: "김선생", email: "test@blink.kr", phone: "010-0000-0000", status: "APPROVED", job: "전문 심리상담사" },
+            { username: "director", password: "1234", name: "박센터장", email: "director@blink.kr", phone: "010-2222-3333", status: "APPROVED", job: "상담센터 센터장/운영자" },
+            { username: "clinical", password: "1234", name: "이임상", email: "clinical@blink.kr", phone: "010-3333-4444", status: "APPROVED", job: "임상심리사" },
+            { username: "trainee", password: "1234", name: "최수련", email: "trainee@blink.kr", phone: "010-4444-5555", status: "APPROVED", job: "수련생/대학원생" },
+            { username: "pending", password: "1234", name: "이신청", email: "pending@blink.kr", phone: "010-1111-2222", status: "PENDING", job: "임상심리사" }
+        ];
 
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'blink-web-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined'
-            ? JSON.parse(__firebase_config)
-            : {
-                apiKey: "AIzaSyDummyKeyForTestingOnly",
-                authDomain: "dummy.firebaseapp.com",
-                projectId: "dummy-project",
-                storageBucket: "dummy.appspot.com",
-                messagingSenderId: "123456789",
-                appId: "1:123456789:web:abcdef"
-            };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Firestore paths following environment rules
-        const usersColRef = collection(db, 'artifacts', appId, 'public', 'data', 'users');
-        const postsColRef = collection(db, 'artifacts', appId, 'public', 'data', 'posts');
-
-        let isAuthReady = false;
-
-        async function authenticateApp() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
+        function getStoredUsers() {
+            const stored = localStorage.getItem('blink_users');
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch (e) {
+                    return [...defaultUserDatabase];
                 }
-                isAuthReady = true;
-            } catch (err) {
-                console.error("Auth error:", err);
-                isAuthReady = true;
+            } else {
+                localStorage.setItem('blink_users', JSON.stringify(defaultUserDatabase));
+                return [...defaultUserDatabase];
             }
         }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            await authenticateApp();
+        function saveUserToStorage(newUser) {
+            const users = getStoredUsers();
+            const exists = users.some(u => u.username === newUser.username);
+            if (exists) {
+                return { success: false, message: "이미 사용 중인 아이디입니다." };
+            }
+            users.push(newUser);
+            localStorage.setItem('blink_users', JSON.stringify(users));
+            return { success: true };
+        }
+
+        // Persistent Session Management
+        function getStoredSession() {
+            const sessionData = localStorage.getItem('blink_current_session');
+            if (sessionData) {
+                try {
+                    return JSON.parse(sessionData);
+                } catch (e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        function saveSession(user) {
+            localStorage.setItem('blink_current_session', JSON.stringify(user));
+        }
+
+        function clearSession() {
+            localStorage.removeItem('blink_current_session');
+        }
+
+        let currentUser = getStoredSession();
+
+        // Default seed data with 50 posts spanning 5 pages
+        const seedTopics = [
+            { cat: "현장고민", title: "오늘자(2026.10.18) 전남 지역 아동청소년 상담 관련 초기 라포 형성 문의", body: "부모님의 권유로 방문한 내담자입니다. 초기 면담 시 라포 형성을 위한 최신 접근법과 노하우에 대한 의견을 구합니다." },
+            { cat: "피드백요청", title: "광주·전남 성인 내담자 대상 HTP 검사 해석 관련 슈퍼비전 조언", body: "HTP 검사에서 지붕 및 벽면 음영 처리가 부각된 케이스입니다. 불안 완화 기제 해석 시 동료 전문가 선생님들의 피드백을 부탁드립니다." },
+            { cat: "질의응답", title: "2026년 10월 기준 통합지자체 공공기관 연계 개인정보 동의서 수속 안내", body: "지자체 센터 연계 과정에서 보호자 설명용 간소화 양식 및 진행 절차에 관한 질문입니다." },
+            { cat: "사례연구", title: "경계선 인격특성(BPD) 내담자의 상담 경계 설정(Boundary Setting)", body: "회기 외 시간 문의 요청 대응 및 안정적인 구조화를 위한 구체적 발화 기법 교류를 제안합니다." },
+            { cat: "정보공유", title: "2026년 10월 전남·광주 지역 청소년상담복지센터 운영 지침 및 정보", body: "바우처 및 지원 체계 관련 최신 업데이트 정보를 공유하오니 업무 참고 부탁드립니다." },
+            { cat: "현장고민", title: "성인 소시오패스적 성향 내담자와의 치료적 동맹 형성의 어려움", body: "타인 조종 욕구가 강하고 상담사를 테스트하려는 성인 내담자 대처 방안을 교류하고자 합니다." },
+            { cat: "질의응답", title: "MMPI-2 6-8/8-6 척도 프로파일 임상적 해석 조언", body: "현실 검증력 평가 시 유의할 점과 초기 개입 시 라포 형성 주의사항을 공유받고 싶습니다." },
+            { cat: "피드백요청", title: "청소년 자해 행동 개입 시 부모 소통 가이드라인 모범 사례", body: "자해 관련 보호자 상담 시 충격을 줄이고 대처 능력을 높이는 대화법을 논의합니다." },
+            { cat: "사례연구", title: "복합 외상(Complex PTSD) 내담자의 안정화 단계 기법 적용", body: "Grounding 기법과 신체화 증상 완화를 위한 임상 경험 사례를 논의합니다." },
+            { cat: "정보공유", title: "2026년 하반기 심리상담사 자격 보수교육 일정 안내", body: "올해 10월 이후 진행되는 주요 학회 보수교육 인정 일정 및 수퍼비전 기준을 공유합니다." }
+        ];
+
+        const surnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍"];
+
+        function generateDefaultPosts() {
+            const posts = [];
+            const startDate = new Date(2026, 2, 1).getTime();  // 2026.03.01
+            const endDate = new Date(2026, 9, 18).getTime();  // 2026.10.18
+
+            for (let i = 0; i < 50; i++) {
+                const template = seedTopics[i % seedTopics.length];
+                const surname = surnames[i % surnames.length];
+                const timestamp = endDate - Math.floor((endDate - startDate) * (i / 49));
+                const dateObj = new Date(timestamp);
+                const y = dateObj.getFullYear();
+                const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const d = String(dateObj.getDate()).padStart(2, '0');
+                
+                posts.push({
+                    id: `default-post-${i + 1}`,
+                    category: template.cat,
+                    author: `${surname}**`,
+                    title: i === 0 ? `[오늘 자 최신글] ${template.title}` : (i < 10 ? template.title : `[${template.cat}] ${template.title.split(' ')[0]} ${i + 1}번째 사례 교류 및 질문`),
+                    date: `${y}.${m}.${d}`,
+                    body: template.body,
+                    createdAt: timestamp
+                });
+            }
+            return posts;
+        }
+
+        function getStoredPosts() {
+            const stored = localStorage.getItem('blink_posts');
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch (e) {
+                    const defaults = generateDefaultPosts();
+                    localStorage.setItem('blink_posts', JSON.stringify(defaults));
+                    return defaults;
+                }
+            } else {
+                const defaults = generateDefaultPosts();
+                localStorage.setItem('blink_posts', JSON.stringify(defaults));
+                return defaults;
+            }
+        }
+
+        let communityPosts = getStoredPosts();
+
+        document.addEventListener('DOMContentLoaded', () => {
 
             const pageViews = {
                 home: document.getElementById('page-home'),
@@ -1165,629 +1246,495 @@
                 });
             }
 
-            // Default seed data with 50 posts spanning 5 pages
-            const seedTopics = [
-                { cat: "현장고민", title: "비자발적 아동 내담자 상담 시 초기 라포 형성 노하우가 궁금합니다.", body: "부모님의 등쌀에 밀려 센터에 방문한 초등 고학년 아동 내담자입니다. 3회기째 말을 거의 하지 않고 침묵을 유지하고 있네요.\n놀이치료 도구나 미술 매체를 활용해 보아도 방어가 강한 상태인데, 선생님들께서는 비자발적 아동 내담자 상담 초기 라포 형성 시 어떤 접근을 선호하시나요?" },
-                { cat: "피드백요청", title: "HTP 그림검사 결과 중 과도한 음영 표현 사례에 대한 조언 구합니다.", body: "성인 청년 내담자의 HTP 검사 중 지붕과 기둥 전체에 매우 빽빽하고 짙은 음영 처리가 관찰되었습니다.\n기타 검사(SCT, MMPI-2) 결과와 조합하여 해석 중인데, 과도한 지붕 음영을 공포 및 불안 완화 기제로 보시는지 동료 선생님들의 의견을 여쭙고 싶습니다." },
-                { cat: "질의응답", title: "정신건강복지센터 및 공공기관 연계 시 부모 동의서 관련 서식 문의", body: "청소년 내담자의 고위험군 진단으로 인해 지역 정신건강복지센터로 연계하려고 합니다.\n보호자가 동의서 서식 작성에 부담을 느끼시는데, 기관 연계 시 활용하기 좋은 간소화된 통합 동의서 서식을 공유해주실 수 있나요?" },
-                { cat: "사례연구", title: "경계선 인격특성(BPD) 내담자의 상담 경계 설정(Boundary Setting)", body: "회기 외 시간에 긴급 대화 및 문자를 지속적으로 요청하시는 경계선 특성의 내담자 사례입니다.\n상담 관계의 안정성을 지키면서도 내담자가 버림받았다고 느끼지 않게 경계를 명확히 세우는 구체적인 발화법과 수퍼비전 기법 교류를 희망합니다." },
-                { cat: "정보공유", title: "광주·전남 지역 2026년 청소년상담복지센터 바우처 수가 변경 안내", body: "올해 적용되는 광주 및 전남 시군구 청소년상담 바우처 지원금 및 본인부담금 체계가 일부 조정되었습니다.\n프리랜서 및 센터 운영 선생님들께 참고가 되도록 정리된 가이드라인 요약본을 공유합니다." },
-                { cat: "현장고민", title: "성인 소시오패스적 성향 내담자와의 치료적 동맹 형성의 어려움", body: "타인 조종 욕구가 강하고 상담사를 테스트하려는 성인 내담자입니다.\n진정성 있는 대화로 끌어들이기 위한 유용한 전략이나 추천할 만한 전문 서적이 있을까요?" },
-                { cat: "질의응답", title: "MMPI-2 6-8/8-6 척도 상승 프로파일 임상적 해석 조언", body: "Paranoid 및 Schizoid 경향성이 함께 보이는 20대 대학생 내담자 사례입니다.\n현실 검증력 평가 시 유의할 점과 초기 개입 시 라포 형성 주의사항을 공유받고 싶습니다." },
-                { cat: "피드백요청", title: "청소년 자해 행동 개입 시 부모 소통 가이드라인 모범 사례", body: "자해 사실을 부모님께 알리는 과정에서 부모의 과도한 질책으로 내담자 상태가 악화되는 경우가 있습니다.\n부모 상담 시 유연하게 전달하는 스크립트나 노하우가 있을까요?" },
-                { cat: "사례연구", title: "복합 외상(Complex PTSD) 내담자의 안정화 단계 기법 적용", body: "어린 시절 장기적 학대 경험이 있는 성인 내담자입니다.\n재외상화를 방지하기 위한 Grounding(접지) 기법과 신체화 증상 완화 접근법에 대해 논의하고 싶습니다." },
-                { cat: "정보공유", title: "2026년도 심리상담사 자격 보수교육 및 학회 수퍼비전 인정 일정", body: "올해 하반기 진행되는 주요 학회 보수교육 인정 일정 및 수퍼비전 인정 기준 변경사항을 정리하여 공유해드립니다." }
-            ];
-
-            const surnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍"];
-
-            function generateDefaultPosts() {
-                const posts = [];
-                const startDate = new Date(2026, 2, 1).getTime(); // 2026.03.01
-                const endDate = new Date(2026, 8, 29).getTime();  // 2026.09.29
-
-                for (let i = 0; i < 50; i++) {
-                    const template = seedTopics[i % seedTopics.length];
-                    const surname = surnames[i % surnames.length];
-                    const timestamp = endDate - Math.floor((endDate - startDate) * (i / 49));
-                    const dateObj = new Date(timestamp);
-                    const y = dateObj.getFullYear();
-                    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
-                    const d = String(dateObj.getDate()).padStart(2, '0');
-                    
-                    posts.push({
-                        id: `default-post-${i + 1}`,
-                        category: template.cat,
-                        author: `${surname}**`,
-                        title: i < 10 ? template.title : `[${template.cat}] ${template.title.split(' ')[0]} ${i + 1}번째 사례 교류 및 질문`,
-                        date: `${y}.${m}.${d}`,
-                        body: template.body,
-                        createdAt: timestamp
-                    });
-                }
-                return posts;
-            }
-
-            const defaultCommunityPosts = generateDefaultPosts();
-            let communityPosts = [...defaultCommunityPosts];
-
-            const defaultUserDatabase = [
-                { username: "test", password: "1234", name: "김선생", email: "test@blink.kr", phone: "010-0000-0000", status: "APPROVED", job: "전문 심리상담사", createdAt: 1000 },
-                { username: "pending", password: "1234", name: "이신청", email: "pending@blink.kr", phone: "010-1111-2222", status: "PENDING", job: "임상심리사", createdAt: 2000 }
-            ];
-
-            const userDatabase = [];
-
-            // Realtime sync for users
-            onSnapshot(usersColRef, (snapshot) => {
-                if (snapshot.empty) {
-                    defaultUserDatabase.forEach(async (u) => {
-                        const uRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', u.username);
-                        await setDoc(uRef, u);
-                    });
-                } else {
-                    userDatabase.length = 0;
-                    snapshot.forEach(docSnap => {
-                        userDatabase.push(docSnap.data());
-                    });
-                }
-            }, (err) => console.error("Error fetching users:", err));
-
-            // Realtime sync for posts with fallback guarantee
-            onSnapshot(postsColRef, (snapshot) => {
-                if (snapshot.empty) {
-                    defaultCommunityPosts.forEach(async (p) => {
-                        try {
-                            await addDoc(postsColRef, p);
-                        } catch(e) {}
-                    });
-                } else {
-                    const fetched = [];
-                    snapshot.forEach(docSnap => {
-                        fetched.push({ id: docSnap.id, ...docSnap.data() });
-                    });
-                    fetched.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-                    if (fetched.length > 0) {
-                        communityPosts = fetched;
-                    }
-                }
-                renderCommunityBoard();
-            }, (err) => {
-                console.warn("Firestore fallback active, using local default posts:", err);
-                renderCommunityBoard();
-            });
-
-            let currentUser = null;
-
-            const applyModal = document.getElementById('applyModal');
-            const loginModal = document.getElementById('loginModal');
-            const findModal = document.getElementById('findModal');
-            const statusModal = document.getElementById('statusModal');
-            const termsModal = document.getElementById('termsModal');
-            const privacyModal = document.getElementById('privacyModal');
-            const inquiryModal = document.getElementById('inquiryModal');
-
-            const openLoginBtn = document.getElementById('openLoginBtn');
-            const openLoginBtnMobile = document.getElementById('openLoginBtnMobile');
-            const openFindModal = document.getElementById('openFindModal');
-            const openTermsBtn = document.getElementById('openTermsBtn');
-            const openPrivacyBtn = document.getElementById('openPrivacyBtn');
-            const openInquiryBtn = document.getElementById('openInquiryBtn');
-            const closeApplyModal = document.getElementById('closeApplyModal');
-            const closeLoginModal = document.getElementById('closeLoginModal');
-            const closeFindModal = document.getElementById('closeFindModal');
-            const closeStatusModal = document.getElementById('closeStatusModal');
-            const closeTermsModal = document.getElementById('closeTermsModal');
-            const confirmTermsModal = document.getElementById('confirmTermsModal');
-            const closePrivacyModal = document.getElementById('closePrivacyModal');
-            const confirmPrivacyModal = document.getElementById('confirmPrivacyModal');
-            const closeInquiryModal = document.getElementById('closeInquiryModal');
-            const closeInquiryBtn = document.getElementById('closeInquiryBtn');
-            const copyEmailBtn = document.getElementById('copyEmailBtn');
-            const switchModalToApply = document.getElementById('switchModalToApply');
-
-            const communityApplyForm = document.getElementById('communityApplyForm');
-            const loginForm = document.getElementById('loginForm');
-            const findIdForm = document.getElementById('findIdForm');
-            const findPwForm = document.getElementById('findPwForm');
-            const loginErrorMsg = document.getElementById('loginErrorMsg');
-
-            const tabFindId = document.getElementById('tabFindId');
-            const tabFindPw = document.getElementById('tabFindPw');
-
-            if (tabFindId && tabFindPw) {
-                tabFindId.addEventListener('click', () => {
-                    tabFindId.className = "flex-1 py-2.5 text-center font-bold text-sm text-brand-600 border-b-2 border-brand-600 transition-all";
-                    tabFindPw.className = "flex-1 py-2.5 text-center font-medium text-sm text-slate-400 hover:text-slate-600 transition-all";
-                    findIdForm.classList.remove('hidden');
-                    findPwForm.classList.add('hidden');
-                });
-
-                tabFindPw.addEventListener('click', () => {
-                    tabFindPw.className = "flex-1 py-2.5 text-center font-bold text-sm text-brand-600 border-b-2 border-brand-600 transition-all";
-                    tabFindId.className = "flex-1 py-2.5 text-center font-medium text-sm text-slate-400 hover:text-slate-600 transition-all";
-                    findPwForm.classList.remove('hidden');
-                    findIdForm.classList.add('hidden');
-                });
-            }
-
-            function showModal(modal) {
-                if (modal) modal.classList.remove('hidden');
-            }
-            function hideModal(modal) {
-                if (modal) modal.classList.add('hidden');
-            }
-
-            function showStatus(title, message, isSuccess = true) {
-                const iconContainer = document.getElementById('statusIcon');
-                document.getElementById('statusTitle').innerText = title;
-                document.getElementById('statusBody').innerText = message;
-
-                if (isSuccess) {
-                    iconContainer.className = "w-14 h-14 mx-auto mb-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center";
-                    iconContainer.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
-                } else {
-                    iconContainer.className = "w-14 h-14 mx-auto mb-4 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center";
-                    iconContainer.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
-                }
-                showModal(statusModal);
-            }
-
-            document.querySelectorAll('.open-apply-btn').forEach(btn => {
-                btn.addEventListener('click', () => showModal(applyModal));
-            });
-
-            if (openLoginBtn) openLoginBtn.addEventListener('click', () => showModal(loginModal));
-            if (openLoginBtnMobile) openLoginBtnMobile.addEventListener('click', () => {
-                if (!mobileMenu.classList.contains('hidden')) toggleMobileMenu();
-                showModal(loginModal);
-            });
-
-            if (openFindModal) {
-                openFindModal.addEventListener('click', () => {
-                    hideModal(loginModal);
-                    showModal(findModal);
-                });
-            }
-
-            if (openTermsBtn) openTermsBtn.addEventListener('click', () => showModal(termsModal));
-            if (openPrivacyBtn) openPrivacyBtn.addEventListener('click', () => showModal(privacyModal));
-            if (openInquiryBtn) openInquiryBtn.addEventListener('click', () => showModal(inquiryModal));
-
-            if (switchModalToApply) {
-                switchModalToApply.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    hideModal(loginModal);
-                    showModal(applyModal);
-                });
-            }
-
-            if (closeApplyModal) closeApplyModal.addEventListener('click', () => hideModal(applyModal));
-            if (closeLoginModal) closeLoginModal.addEventListener('click', () => hideModal(loginModal));
-            if (closeFindModal) closeFindModal.addEventListener('click', () => hideModal(findModal));
-            if (closeStatusModal) closeStatusModal.addEventListener('click', () => hideModal(statusModal));
-            if (closeTermsModal) closeTermsModal.addEventListener('click', () => hideModal(termsModal));
-            if (confirmTermsModal) confirmTermsModal.addEventListener('click', () => hideModal(termsModal));
-            if (closePrivacyModal) closePrivacyModal.addEventListener('click', () => hideModal(privacyModal));
-            if (confirmPrivacyModal) confirmPrivacyModal.addEventListener('click', () => hideModal(privacyModal));
-            if (closeInquiryModal) closeInquiryModal.addEventListener('click', () => hideModal(inquiryModal));
-            if (closeInquiryBtn) closeInquiryBtn.addEventListener('click', () => hideModal(inquiryModal));
-
-            if (copyEmailBtn) {
-                copyEmailBtn.addEventListener('click', () => {
-                    const emailText = "blinkcomu@gmail.com";
-                    const tempInput = document.createElement("input");
-                    tempInput.value = emailText;
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(tempInput);
-
-                    copyEmailBtn.innerText = "복사 완료!";
-                    setTimeout(() => {
-                        copyEmailBtn.innerText = "주소 복사";
-                    }, 2000);
-                });
-            }
-
-            [applyModal, loginModal, findModal, statusModal, termsModal, privacyModal, inquiryModal].forEach(modal => {
-                if (modal) {
-                    modal.addEventListener('click', (e) => {
-                        if (e.target === modal) hideModal(modal);
-                    });
-                }
-            });
-
-            if (findIdForm) {
-                findIdForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const name = document.getElementById('findIdName').value.trim();
-                    const email = document.getElementById('findIdEmail').value.trim();
-
-                    const match = userDatabase.find(u => u.name === name && u.email === email);
-                    hideModal(findModal);
-
-                    if (match) {
-                        showStatus("아이디 찾기 성공", `${name} 선생님의 등록된 아이디는 [ ${match.username} ] 입니다.`, true);
-                    } else {
-                        showStatus("일치하는 정보 없음", "입력하신 이름과 이메일로 등록된 계정 정보를 찾을 수 없습니다.", false);
-                    }
-                });
-            }
-
-            if (findPwForm) {
-                findPwForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const username = document.getElementById('findPwUsername').value.trim();
-                    const email = document.getElementById('findPwEmail').value.trim();
-
-                    const match = userDatabase.find(u => u.username === username && u.email === email);
-                    hideModal(findModal);
-
-                    if (match) {
-                        showStatus("비밀번호 조회 완료", `회원님의 비밀번호는 [ ${match.password} ] 입니다. 로그인 후 안전하게 변경을 권장합니다.`, true);
-                    } else {
-                        showStatus("일치하는 정보 없음", "입력하신 아이디와 이메일 정보가 일치하지 않습니다.", false);
-                    }
-                });
-            }
-
-            if (communityApplyForm) {
-                communityApplyForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-
-                    const name = document.getElementById('applyName').value.trim();
-                    const email = document.getElementById('applyEmail').value.trim();
-                    const phone = document.getElementById('applyPhone').value.trim();
-                    const username = document.getElementById('applyUsername').value.trim();
-                    const password = document.getElementById('applyPassword').value;
-                    const job = document.getElementById('applyJob').value;
-
-                    if (userDatabase.some(u => u.username === username)) {
-                        showStatus("신청 불가", "이미 등록 신청되었거나 존재하는 아이디입니다. 다른 아이디를 입력해주세요.", false);
-                        return;
-                    }
-
-                    const newUser = {
-                        username,
-                        password,
-                        name,
-                        email,
-                        phone,
-                        status: "APPROVED",
-                        job,
-                        createdAt: Date.now()
-                    };
-
-                    try {
-                        const userDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', username);
-                        await setDoc(userDocRef, newUser);
-
-                        communityApplyForm.reset();
-                        hideModal(applyModal);
-
-                        showStatus("가입 신청 및 승인 완료", `감사합니다, ${name} 선생님!\n전문가 커뮤니티 가입 승인이 완료되었습니다. 클라우드 DB에 영구 저장되었으며 생성하신 아이디[ ${username} ]와 비밀번호로 언제든 로그인하실 수 있습니다!`, true);
-                    } catch (err) {
-                        console.error("User registration error:", err);
-                        showStatus("오류 발생", "가입 정보를 저장하는 중 오류가 발생했습니다. 다시 시도해 주세요.", false);
-                    }
-                });
-            }
-
-            if (loginForm) {
-                loginForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    loginErrorMsg.classList.add('hidden');
-
-                    const username = document.getElementById('loginUsername').value.trim();
-                    const password = document.getElementById('loginPassword').value;
-
-                    const foundUser = userDatabase.find(u => u.username === username && u.password === password);
-
-                    if (!foundUser) {
-                        loginErrorMsg.innerText = "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해 주세요.";
-                        loginErrorMsg.classList.remove('hidden');
-                        return;
-                    }
-
-                    if (foundUser.status === "PENDING") {
-                        hideModal(loginModal);
-                        showStatus("승인 대기 중입니다", `현재 ${foundUser.name} 선생님의 커뮤니티 가입 자격 심사가 진행 중입니다. 운영자 최종 승인 완료 후 서비스 이용이 가능합니다.`, false);
-                        return;
-                    }
-
-                    if (foundUser.status === "APPROVED") {
-                        currentUser = foundUser;
-                        hideModal(loginModal);
-                        updateHeaderUIAfterLogin();
-                        showStatus("로그인 성공", `반갑습니다, ${currentUser.name} 선생님!\n블링크 전문가 커뮤니티 공간에 오신 것을 환영합니다.`, true);
-                    }
-                });
-            }
-
-            function updateHeaderUIAfterLogin() {
-                const headerArea = document.getElementById('headerAuthArea');
-                const mobileAuthArea = document.getElementById('mobileAuthArea');
-
-                const userBadgeHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="flex items-center gap-2 bg-brand-50 border border-brand-200 px-3 py-1.5 rounded-full">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-xs font-bold text-brand-800">${currentUser.name} 선생님</span>
-                        </div>
-                        <button id="logoutBtn" class="text-xs text-slate-500 hover:text-slate-800 underline font-medium">로그아웃</button>
-                    </div>
-                `;
-
-                if (headerArea) headerArea.innerHTML = userBadgeHTML;
-                if (mobileAuthArea) mobileAuthArea.innerHTML = userBadgeHTML;
-
-                document.querySelectorAll('#logoutBtn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        currentUser = null;
-                        location.reload();
-                    });
-                });
-            }
-
             let currentCommCategory = 'ALL';
-            let currentCommSearch = '';
-            let currentCommPage = 1;
-            const postsPerPage = 10;
-            let selectedPostForChat = null;
-
-            const communityPostList = document.getElementById('communityPostList');
-            const paginationButtons = document.getElementById('paginationButtons');
-            const totalPostsCount = document.getElementById('totalPostsCount');
-            const currentPageRange = document.getElementById('currentPageRange');
-            const commSearchInput = document.getElementById('commSearchInput');
-            const commCatBtns = document.querySelectorAll('.comm-cat-btn');
-
-            const postDetailModal = document.getElementById('postDetailModal');
-            const chatRequestModal = document.getElementById('chatRequestModal');
-            const writePostModal = document.getElementById('writePostModal');
-
-            const closePostDetailModal = document.getElementById('closePostDetailModal');
-            const closePostDetailBtn = document.getElementById('closePostDetailBtn');
-            const triggerChatRequestBtn = document.getElementById('triggerChatRequestBtn');
-
-            const closeChatReqModal = document.getElementById('closeChatReqModal');
-            const cancelChatReqBtn = document.getElementById('cancelChatReqBtn');
-            const chatRequestForm = document.getElementById('chatRequestForm');
-
-            const openWritePostBtn = document.getElementById('openWritePostBtn');
-            const closeWritePostModal = document.getElementById('closeWritePostModal');
-            const createPostForm = document.getElementById('createPostForm');
-
-            function getFilteredPosts() {
-                return communityPosts.filter(post => {
-                    const matchCategory = (currentCommCategory === 'ALL' || post.category === currentCommCategory);
-                    const matchSearch = (post.title.toLowerCase().includes(currentCommSearch.toLowerCase()) ||
-                                         post.body.toLowerCase().includes(currentCommSearch.toLowerCase()) ||
-                                         post.author.toLowerCase().includes(currentCommSearch.toLowerCase()));
-                    return matchCategory && matchSearch;
-                });
-            }
+            let commSearchQuery = '';
+            let currentPage = 1;
+            const POSTS_PER_PAGE = 10;
 
             function renderCommunityBoard() {
-                const filtered = getFilteredPosts();
-                const total = filtered.length;
-                const totalPages = Math.ceil(total / postsPerPage) || 1;
+                const container = document.getElementById('communityPostList');
+                if (!container) return;
 
-                if (currentCommPage > totalPages) currentCommPage = totalPages;
-                if (currentCommPage < 1) currentCommPage = 1;
+                let filtered = communityPosts.filter(post => {
+                    const matchCat = (currentCommCategory === 'ALL') || (post.category === currentCommCategory);
+                    const matchSearch = !commSearchQuery || 
+                        post.title.toLowerCase().includes(commSearchQuery.toLowerCase()) || 
+                        post.body.toLowerCase().includes(commSearchQuery.toLowerCase());
+                    return matchCat && matchSearch;
+                });
 
-                const startIdx = (currentCommPage - 1) * postsPerPage;
-                const endIdx = Math.min(startIdx + postsPerPage, total);
-                const pagePosts = filtered.slice(startIdx, endIdx);
+                const totalPosts = filtered.length;
+                const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE) || 1;
 
-                if (totalPostsCount) totalPostsCount.innerText = total;
-                if (currentPageRange) currentPageRange.innerText = total > 0 ? `${startIdx + 1} - ${endIdx}` : '0';
+                if (currentPage > totalPages) currentPage = totalPages;
+                if (currentPage < 1) currentPage = 1;
 
-                if (!communityPostList) return;
+                const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+                const pagePosts = filtered.slice(startIndex, startIndex + POSTS_PER_PAGE);
+
+                document.getElementById('totalPostsCount').innerText = totalPosts;
+                document.getElementById('currentPageRange').innerText = totalPosts === 0 ? '0' : `${startIndex + 1} - ${Math.min(startIndex + POSTS_PER_PAGE, totalPosts)}`;
 
                 if (pagePosts.length === 0) {
-                    communityPostList.innerHTML = `
-                        <div class="p-12 text-center text-slate-400 text-xs sm:text-sm">
-                            <svg class="w-10 h-10 mx-auto mb-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            조건에 해당하는 게시글이 없습니다. 다른 검색어나 카테고리를 선택해 보세요.
+                    container.innerHTML = `
+                        <div class="p-12 text-center text-slate-400 text-sm">
+                            등록된 게시글이 없습니다.
                         </div>
                     `;
                 } else {
-                    communityPostList.innerHTML = pagePosts.map(post => `
-                        <div class="post-item-row group hover:bg-brand-50/40 transition-colors p-4 sm:px-6 cursor-pointer flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center" data-id="${post.id}">
-                            <div class="flex items-center justify-between md:justify-center md:col-span-2 mb-2 md:mb-0">
-                                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold border ${getCategoryBadgeStyle(post.category)}">
+                    container.innerHTML = pagePosts.map(post => `
+                        <div class="p-4 sm:p-5 hover:bg-slate-50 transition-colors flex flex-col md:grid md:grid-cols-12 gap-3 md:gap-4 items-start md:items-center cursor-pointer group post-item-row" data-post-id="${post.id}">
+                            <div class="md:col-span-2 flex items-center justify-between w-full md:w-auto md:justify-center">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${getCategoryBadgeColor(post.category)}">
                                     ${post.category}
                                 </span>
                                 <span class="md:hidden text-xs text-slate-400 font-en">${post.date}</span>
                             </div>
-                            <div class="md:col-span-6 mb-2 md:mb-0">
-                                <h3 class="text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1 leading-snug">
+                            <div class="md:col-span-6 w-full">
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1">
                                     ${post.title}
-                                </h3>
-                                <p class="text-[11px] text-slate-500 line-clamp-1 mt-0.5 md:hidden">
-                                    ${post.body}
-                                </p>
+                                </h4>
+                                <p class="text-xs text-slate-500 line-clamp-1 mt-0.5">${post.body}</p>
                             </div>
-                            <div class="flex items-center justify-between md:justify-center md:col-span-2 text-xs text-slate-600">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold text-[10px] flex items-center justify-center">
-                                        ${post.author.charAt(0)}
-                                    </span>
-                                    <span class="font-bold text-slate-700">${post.author}</span>
-                                </div>
-                                <span class="hidden md:inline text-[11px] text-slate-400 font-en">${post.date}</span>
+                            <div class="md:col-span-2 text-xs text-slate-600 text-left md:text-center flex items-center gap-1.5 font-medium">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block md:hidden"></span>
+                                <span>${post.author}</span>
                             </div>
-                            <div class="md:col-span-2 text-right md:text-center mt-2 md:mt-0 pt-2 md:pt-0 border-t border-slate-100 md:border-t-0 flex md:justify-center">
-                                <button class="w-full md:w-auto px-3 py-1.5 rounded-lg bg-white border border-brand-200 text-brand-700 hover:bg-brand-600 hover:text-white font-bold text-[11px] transition-all inline-flex items-center justify-center gap-1 shadow-2xs">
+                            <div class="md:col-span-2 flex items-center justify-end md:justify-center w-full">
+                                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold border border-brand-200">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                                    <span>1:1 채팅 요청</span>
-                                </button>
+                                    <span>1:1 채팅요청</span>
+                                </span>
                             </div>
                         </div>
                     `).join('');
                 }
 
-                let paginationHTML = '';
-                paginationHTML += `
-                    <button class="page-nav-btn p-2 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none" ${currentCommPage === 1 ? 'disabled' : ''} data-page="${currentCommPage - 1}">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                `;
-
-                for (let i = 1; i <= totalPages; i++) {
-                    if (i === currentCommPage) {
-                        paginationHTML += `<button class="w-8 h-8 rounded-lg bg-brand-600 text-white font-bold text-xs shadow-xs">${i}</button>`;
-                    } else {
-                        paginationHTML += `<button class="page-nav-btn w-8 h-8 rounded-lg text-slate-600 hover:bg-slate-100 font-medium text-xs transition-colors" data-page="${i}">${i}</button>`;
-                    }
-                }
-
-                paginationHTML += `
-                    <button class="page-nav-btn p-2 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none" ${currentCommPage === totalPages ? 'disabled' : ''} data-page="${currentCommPage + 1}">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                `;
-
-                if (paginationButtons) paginationButtons.innerHTML = paginationHTML;
+                renderPaginationButtons(totalPages);
 
                 document.querySelectorAll('.post-item-row').forEach(row => {
                     row.addEventListener('click', () => {
-                        const id = row.getAttribute('data-id');
-                        openPostDetail(id);
-                    });
-                });
-
-                document.querySelectorAll('.page-nav-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const page = +btn.getAttribute('data-page');
-                        if (page && page >= 1 && page <= totalPages) {
-                            currentCommPage = page;
-                            renderCommunityBoard();
-                        }
+                        const pid = row.getAttribute('data-post-id');
+                        openPostDetail(pid);
                     });
                 });
             }
 
-            function getCategoryBadgeStyle(cat) {
+            function getCategoryBadgeColor(cat) {
                 switch (cat) {
-                    case '현장고민': return 'bg-amber-50 text-amber-700 border-amber-200';
-                    case '질의응답': return 'bg-sky-50 text-sky-700 border-sky-200';
-                    case '피드백요청': return 'bg-purple-50 text-purple-700 border-purple-200';
-                    case '사례연구': return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-                    case '정보공유': return 'bg-rose-50 text-rose-700 border-rose-200';
-                    default: return 'bg-slate-50 text-slate-700 border-slate-200';
+                    case '현장고민': return 'bg-amber-100 text-amber-800';
+                    case '질의응답': return 'bg-blue-100 text-blue-800';
+                    case '피드백요청': return 'bg-purple-100 text-purple-800';
+                    case '사례연구': return 'bg-emerald-100 text-emerald-800';
+                    case '정보공유': return 'bg-sky-100 text-sky-800';
+                    default: return 'bg-slate-100 text-slate-700';
                 }
             }
 
-            function openPostDetail(id) {
-                const post = communityPosts.find(p => String(p.id) === String(id));
-                if (!post) return;
+            function renderPaginationButtons(totalPages) {
+                const btnContainer = document.getElementById('paginationButtons');
+                if (!btnContainer) return;
 
-                selectedPostForChat = post;
+                let html = '';
+                html += `
+                    <button id="prevPageBtn" ${currentPage === 1 ? 'disabled' : ''} class="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold">
+                        이전
+                    </button>
+                `;
+
+                for (let p = 1; p <= totalPages; p++) {
+                    if (p === currentPage) {
+                        html += `<button class="w-8 h-8 rounded-xl bg-brand-600 text-white font-bold text-xs">${p}</button>`;
+                    } else {
+                        html += `<button data-goto-page="${p}" class="page-num-btn w-8 h-8 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-bold text-xs">${p}</button>`;
+                    }
+                }
+
+                html += `
+                    <button id="nextPageBtn" ${currentPage === totalPages ? 'disabled' : ''} class="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold">
+                        다음
+                    </button>
+                `;
+
+                btnContainer.innerHTML = html;
+
+                const prevBtn = document.getElementById('prevPageBtn');
+                if (prevBtn) prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderCommunityBoard(); } });
+
+                const nextBtn = document.getElementById('nextPageBtn');
+                if (nextBtn) nextBtn.addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderCommunityBoard(); } });
+
+                document.querySelectorAll('.page-num-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        currentPage = parseInt(btn.getAttribute('data-goto-page'));
+                        renderCommunityBoard();
+                    });
+                });
+            }
+
+            const commCatBtns = document.querySelectorAll('.comm-cat-btn');
+            commCatBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    commCatBtns.forEach(b => {
+                        b.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+                    });
+                    btn.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-xs";
+                    currentCommCategory = btn.getAttribute('data-cat');
+                    currentPage = 1;
+                    renderCommunityBoard();
+                });
+            });
+
+            const commSearchInput = document.getElementById('commSearchInput');
+            if (commSearchInput) {
+                commSearchInput.addEventListener('input', (e) => {
+                    commSearchQuery = e.target.value.trim();
+                    currentPage = 1;
+                    renderCommunityBoard();
+                });
+            }
+
+            renderCommunityBoard();
+
+            let activePostDetail = null;
+
+            function openPostDetail(postId) {
+                const post = communityPosts.find(p => p.id === postId);
+                if (!post) return;
+                activePostDetail = post;
 
                 document.getElementById('detailPostCategory').innerText = post.category;
-                document.getElementById('detailPostCategory').className = `px-2.5 py-0.5 rounded-full font-bold text-xs ${getCategoryBadgeStyle(post.category)}`;
+                document.getElementById('detailPostCategory').className = `px-2.5 py-0.5 rounded-full font-bold text-xs ${getCategoryBadgeColor(post.category)}`;
                 document.getElementById('detailPostDate').innerText = post.date;
                 document.getElementById('detailPostTitle').innerText = post.title;
                 document.getElementById('detailPostAuthor').innerText = `${post.author} 선생님`;
                 document.getElementById('detailAuthorAvatar').innerText = post.author.charAt(0);
                 document.getElementById('detailPostBody').innerText = post.body;
 
-                showModal(postDetailModal);
+                document.getElementById('postDetailModal').classList.remove('hidden');
             }
 
-            commCatBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentCommCategory = btn.getAttribute('data-cat');
-                    commCatBtns.forEach(b => {
-                        b.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
-                    });
-                    btn.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-xs";
-                    currentCommPage = 1;
-                    renderCommunityBoard();
-                });
+            document.getElementById('closePostDetailModal')?.addEventListener('click', () => {
+                document.getElementById('postDetailModal').classList.add('hidden');
+            });
+            document.getElementById('closePostDetailBtn')?.addEventListener('click', () => {
+                document.getElementById('postDetailModal').classList.add('hidden');
             });
 
-            if (commSearchInput) {
-                commSearchInput.addEventListener('input', (e) => {
-                    currentCommSearch = e.target.value.trim();
-                    currentCommPage = 1;
-                    renderCommunityBoard();
-                });
+            document.getElementById('triggerChatRequestBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    showStatusModal('로그인이 필요한 기능입니다', '1:1 채팅 요청은 블링크 전문가 승인 회원 전용입니다.\n로그인 후 이용 가능합니다.', false);
+                    return;
+                }
+                document.getElementById('postDetailModal').classList.add('hidden');
+                document.getElementById('targetAuthorName').innerText = activePostDetail ? activePostDetail.author : '김**';
+                document.getElementById('chatRequestModal').classList.remove('hidden');
+            });
+
+            document.getElementById('closeChatReqModal')?.addEventListener('click', () => {
+                document.getElementById('chatRequestModal').classList.add('hidden');
+            });
+            document.getElementById('cancelChatReqBtn')?.addEventListener('click', () => {
+                document.getElementById('chatRequestModal').classList.add('hidden');
+            });
+
+            document.getElementById('chatRequestForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                document.getElementById('chatRequestModal').classList.add('hidden');
+                showStatusModal('1:1 채팅 요청 완료', '상대방 선생님께 대화 요청 메시지가 발송되었습니다.\n상대방이 수락하면 채팅방 연결 알림이 전송됩니다.', true);
+                document.getElementById('chatReqMessage').value = '';
+            });
+
+            document.getElementById('openWritePostBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    showStatusModal('로그인 필요', '커뮤니티 글쓰기는 자격이 승인된 회원의 로그인 후 가능합니다.', false);
+                    return;
+                }
+                document.getElementById('writePostModal').classList.remove('hidden');
+            });
+
+            document.getElementById('closeWritePostModal')?.addEventListener('click', () => {
+                document.getElementById('writePostModal').classList.add('hidden');
+            });
+
+            document.getElementById('createPostForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const category = document.getElementById('writeCategory').value;
+                const title = document.getElementById('writeTitle').value.trim();
+                const body = document.getElementById('writeBody').value.trim();
+
+                const today = new Date();
+                const y = today.getFullYear();
+                const m = String(today.getMonth() + 1).padStart(2, '0');
+                const d = String(today.getDate()).padStart(2, '0');
+
+                const surname = currentUser && currentUser.name ? currentUser.name.charAt(0) : '김';
+
+                const newPost = {
+                    id: `post-${Date.now()}`,
+                    category,
+                    title,
+                    body,
+                    author: `${surname}**`,
+                    date: `${y}.${m}.${d}`,
+                    createdAt: Date.now()
+                };
+
+                communityPosts.unshift(newPost);
+                localStorage.setItem('blink_posts', JSON.stringify(communityPosts));
+
+                document.getElementById('writePostModal').classList.add('hidden');
+                document.getElementById('createPostForm').reset();
+                showStatusModal('게시글 등록 성공', '성공적으로 게시글이 등록되었습니다.', true);
+                currentPage = 1;
+                renderCommunityBoard();
+            });
+
+            const applyModal = document.getElementById('applyModal');
+            const openApplyBtns = document.querySelectorAll('.open-apply-btn');
+            const closeApplyModal = document.getElementById('closeApplyModal');
+            const communityApplyForm = document.getElementById('communityApplyForm');
+
+            openApplyBtns.forEach(btn => {
+                btn.addEventListener('click', () => applyModal.classList.remove('hidden'));
+            });
+
+            closeApplyModal.addEventListener('click', () => applyModal.classList.add('hidden'));
+
+            communityApplyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('applyUsername').value.trim();
+                const password = document.getElementById('applyPassword').value.trim();
+                const name = document.getElementById('applyName').value.trim();
+                const birth = document.getElementById('applyBirth').value.trim();
+                const phone = document.getElementById('applyPhone').value.trim();
+                const email = document.getElementById('applyEmail').value.trim();
+                const job = document.getElementById('applyJob').value;
+
+                const newUser = {
+                    username,
+                    password,
+                    name,
+                    birth,
+                    phone,
+                    email,
+                    job,
+                    status: "APPROVED"
+                };
+
+                const saveResult = saveUserToStorage(newUser);
+
+                if (!saveResult.success) {
+                    showStatusModal('가입 실패', saveResult.message, false);
+                    return;
+                }
+
+                applyModal.classList.add('hidden');
+                communityApplyForm.reset();
+
+                showStatusModal('커뮤니티 참여 신청 완료', `${name} 선생님, 참여 신청이 완료되었습니다.\n입력하신 아이디 [${username}]로 지금 바로 로그인 가능합니다.`, true);
+            });
+
+            const loginModal = document.getElementById('loginModal');
+            const openLoginBtn = document.getElementById('openLoginBtn');
+            const openLoginBtnMobile = document.getElementById('openLoginBtnMobile');
+            const closeLoginModal = document.getElementById('closeLoginModal');
+            const loginForm = document.getElementById('loginForm');
+            const loginErrorMsg = document.getElementById('loginErrorMsg');
+            const switchModalToApply = document.getElementById('switchModalToApply');
+
+            if (openLoginBtn) openLoginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
+            if (openLoginBtnMobile) openLoginBtnMobile.addEventListener('click', () => loginModal.classList.remove('hidden'));
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.classList.add('hidden');
+                loginErrorMsg.classList.add('hidden');
+            });
+
+            switchModalToApply.addEventListener('click', () => {
+                loginModal.classList.add('hidden');
+                applyModal.classList.remove('hidden');
+            });
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                loginErrorMsg.classList.add('hidden');
+
+                const username = document.getElementById('loginUsername').value.trim();
+                const password = document.getElementById('loginPassword').value.trim();
+
+                const usersList = getStoredUsers();
+                const matchedUser = usersList.find(u => u.username === username);
+
+                if (!matchedUser) {
+                    loginErrorMsg.innerText = "존재하지 않는 아이디입니다. 아이디를 확인해주세요.";
+                    loginErrorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                if (matchedUser.password !== password) {
+                    loginErrorMsg.innerText = "비밀번호가 일치하지 않습니다.";
+                    loginErrorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                if (matchedUser.status === "PENDING") {
+                    loginErrorMsg.innerText = "운영자 가입 승인 심사 진행 중인 계정입니다.";
+                    loginErrorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                currentUser = matchedUser;
+                saveSession(currentUser);
+                loginModal.classList.add('hidden');
+                loginForm.reset();
+
+                updateHeaderAuthUI();
+                showStatusModal('로그인 성공', `${currentUser.name} 선생님, 환영합니다!`, true);
+            });
+
+            function updateHeaderAuthUI() {
+                const headerAuthArea = document.getElementById('headerAuthArea');
+                const mobileAuthArea = document.getElementById('mobileAuthArea');
+
+                if (currentUser) {
+                    const userHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-2 bg-brand-50 border border-brand-200 px-3.5 py-1.5 rounded-full">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-xs font-bold text-brand-800">${currentUser.name} 선생님</span>
+                            </div>
+                            <button id="logoutBtn" class="text-xs font-medium text-slate-500 hover:text-rose-600 underline px-2 py-1">로그아웃</button>
+                        </div>
+                    `;
+                    headerAuthArea.innerHTML = userHTML;
+                    mobileAuthArea.innerHTML = userHTML;
+
+                    document.querySelectorAll('#logoutBtn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            currentUser = null;
+                            clearSession();
+                            location.reload();
+                        });
+                    });
+                }
             }
 
-            if (closePostDetailModal) closePostDetailModal.addEventListener('click', () => hideModal(postDetailModal));
-            if (closePostDetailBtn) closePostDetailBtn.addEventListener('click', () => hideModal(postDetailModal));
-
-            if (triggerChatRequestBtn) {
-                triggerChatRequestBtn.addEventListener('click', () => {
-                    hideModal(postDetailModal);
-                    if (selectedPostForChat) {
-                        document.getElementById('targetAuthorName').innerText = `${selectedPostForChat.author} 선생님`;
-                        showModal(chatRequestModal);
-                    }
-                });
+            // Restore header UI on page load if session exists
+            if (currentUser) {
+                updateHeaderAuthUI();
             }
 
-            if (closeChatReqModal) closeChatReqModal.addEventListener('click', () => hideModal(chatRequestModal));
-            if (cancelChatReqBtn) cancelChatReqBtn.addEventListener('click', () => hideModal(chatRequestModal));
+            const findModal = document.getElementById('findModal');
+            const openFindModal = document.getElementById('openFindModal');
+            const closeFindModal = document.getElementById('closeFindModal');
+            const tabFindId = document.getElementById('tabFindId');
+            const tabFindPw = document.getElementById('tabFindPw');
+            const findIdForm = document.getElementById('findIdForm');
+            const findPwForm = document.getElementById('findPwForm');
 
-            if (chatRequestForm) {
-                chatRequestForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    hideModal(chatRequestModal);
-                    const authorName = selectedPostForChat ? selectedPostForChat.author : "선생님";
-                    showStatus(
-                        "1:1 채팅 요청 완료",
-                        `${authorName} 선생님께 비공개 대화 요청이 성공적으로 전달되었습니다.\n상대방이 승인하면 모바일 앱 및 알림을 통해 채팅방으로 연결됩니다.`,
-                        true
-                    );
-                    document.getElementById('chatReqMessage').value = '';
-                });
+            openFindModal.addEventListener('click', () => {
+                loginModal.classList.add('hidden');
+                findModal.classList.remove('hidden');
+            });
+
+            closeFindModal.addEventListener('click', () => findModal.classList.add('hidden'));
+
+            tabFindId.addEventListener('click', () => {
+                tabFindId.className = "flex-1 py-2.5 text-center font-bold text-sm text-brand-600 border-b-2 border-brand-600 transition-all";
+                tabFindPw.className = "flex-1 py-2.5 text-center font-medium text-sm text-slate-400 hover:text-slate-600 transition-all";
+                findIdForm.classList.remove('hidden');
+                findPwForm.classList.add('hidden');
+            });
+
+            tabFindPw.addEventListener('click', () => {
+                tabFindPw.className = "flex-1 py-2.5 text-center font-bold text-sm text-brand-600 border-b-2 border-brand-600 transition-all";
+                tabFindId.className = "flex-1 py-2.5 text-center font-medium text-sm text-slate-400 hover:text-slate-600 transition-all";
+                findPwForm.classList.remove('hidden');
+                findIdForm.classList.add('hidden');
+            });
+
+            findIdForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('findIdName').value.trim();
+                const email = document.getElementById('findIdEmail').value.trim();
+
+                const usersList = getStoredUsers();
+                const found = usersList.find(u => u.name === name && u.email === email);
+
+                findModal.classList.add('hidden');
+                if (found) {
+                    showStatusModal('아이디 조회 성공', `${name} 선생님의 아이디는 [ ${found.username} ] 입니다.`, true);
+                } else {
+                    showStatusModal('조회 실패', '입력하신 정보와 일치하는 회원 계정을 찾을 수 없습니다.', false);
+                }
+            });
+
+            findPwForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('findPwUsername').value.trim();
+                const email = document.getElementById('findPwEmail').value.trim();
+
+                const usersList = getStoredUsers();
+                const found = usersList.find(u => u.username === username && u.email === email);
+
+                findModal.classList.add('hidden');
+                if (found) {
+                    showStatusModal('비밀번호 조회', `${username} 계정의 비밀번호는 [ ${found.password} ] 입니다.`, true);
+                } else {
+                    showStatusModal('조회 실패', '입력하신 정보와 일치하는 회원 계정을 찾을 수 없습니다.', false);
+                }
+            });
+
+            const statusModal = document.getElementById('statusModal');
+            const statusIcon = document.getElementById('statusIcon');
+            const statusTitle = document.getElementById('statusTitle');
+            const statusBody = document.getElementById('statusBody');
+            const closeStatusModal = document.getElementById('closeStatusModal');
+
+            function showStatusModal(title, message, isSuccess = true) {
+                statusTitle.innerText = title;
+                statusBody.innerText = message;
+
+                if (isSuccess) {
+                    statusIcon.className = "w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-600";
+                    statusIcon.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+                } else {
+                    statusIcon.className = "w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center bg-rose-100 text-rose-600";
+                    statusIcon.innerHTML = `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg>`;
+                }
+
+                statusModal.classList.remove('hidden');
             }
 
-            if (openWritePostBtn) openWritePostBtn.addEventListener('click', () => showModal(writePostModal));
-            if (closeWritePostModal) closeWritePostModal.addEventListener('click', () => hideModal(writePostModal));
+            closeStatusModal.addEventListener('click', () => statusModal.classList.add('hidden'));
 
-            if (createPostForm) {
-                createPostForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const category = document.getElementById('writeCategory').value;
-                    const title = document.getElementById('writeTitle').value.trim();
-                    const body = document.getElementById('writeBody').value.trim();
+            const termsModal = document.getElementById('termsModal');
+            document.getElementById('openTermsBtn')?.addEventListener('click', () => termsModal.classList.remove('hidden'));
+            document.getElementById('closeTermsModal')?.addEventListener('click', () => termsModal.classList.add('hidden'));
+            document.getElementById('confirmTermsModal')?.addEventListener('click', () => termsModal.classList.add('hidden'));
 
-                    const newPost = {
-                        category,
-                        author: currentUser ? currentUser.name.charAt(0) + "**" : "김**",
-                        title,
-                        date: "2026.09.29",
-                        body,
-                        createdAt: Date.now()
-                    };
+            const privacyModal = document.getElementById('privacyModal');
+            document.getElementById('openPrivacyBtn')?.addEventListener('click', () => privacyModal.classList.remove('hidden'));
+            document.getElementById('closePrivacyModal')?.addEventListener('click', () => privacyModal.classList.add('hidden'));
+            document.getElementById('confirmPrivacyModal')?.addEventListener('click', () => privacyModal.classList.add('hidden'));
 
-                    try {
-                        await addDoc(postsColRef, newPost);
-                        createPostForm.reset();
-                        hideModal(writePostModal);
+            const inquiryModal = document.getElementById('inquiryModal');
+            document.getElementById('openInquiryBtn')?.addEventListener('click', () => inquiryModal.classList.remove('hidden'));
+            document.getElementById('closeInquiryModal')?.addEventListener('click', () => inquiryModal.classList.add('hidden'));
+            document.getElementById('closeInquiryBtn')?.addEventListener('click', () => inquiryModal.classList.add('hidden'));
 
-                        currentCommPage = 1;
+            document.getElementById('copyEmailBtn')?.addEventListener('click', () => {
+                const text = "blinkcomu@gmail.com";
+                const input = document.createElement('textarea');
+                input.value = text;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
 
-                        showStatus(
-                            "게시글 등록 완료",
-                            "새 게시글이 파이어베이스 클라우드 데이터베이스에 영구 등록되었습니다.\n새로고침을 하거나 다른 기기에서 접속해도 등록된 글을 확인하실 수 있습니다.",
-                            true
-                        );
-                    } catch (err) {
-                        console.error("Post creation error:", err);
-                        showStatus("오류 발생", "게시글을 저장하는 중 오류가 발생했습니다.", false);
-                    }
-                });
-            }
-
-            renderCommunityBoard();
+                showStatusModal('복사 완료', '공식 대표 이메일 주소(blinkcomu@gmail.com)가 클립보드에 복사되었습니다.', true);
+            });
         });
     </script>
 </body>
