@@ -85,7 +85,6 @@
             filter: invert(0.3);
         }
 
-        /* Mobile Touch & Scroll Locks */
         body.modal-open {
             overflow: hidden !important;
             touch-action: none;
@@ -200,7 +199,7 @@
 
                     <!-- Home CTA Buttons -->
                     <div class="mb-12 flex flex-wrap justify-center gap-4">
-                        <button class="open-apply-btn px-8 py-4 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-base sm:text-lg shadow-xl shadow-brand-600/25 hover:shadow-2xl hover:-translate-y-0.5 transition-all inline-flex items-center gap-2.5 group">
+                        <button id="homeApplyBtn" class="open-apply-btn px-8 py-4 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-base sm:text-lg shadow-xl shadow-brand-600/25 hover:shadow-2xl hover:-translate-y-0.5 transition-all inline-flex items-center gap-2.5 group">
                             <span>블링크 커뮤니티 참여하기</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                         </button>
@@ -223,86 +222,86 @@
                             <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-white/90 to-transparent"></div>
                             <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-white/90 to-transparent"></div>
 
-                            <div class="animate-marquee gap-4">
+                            <div class="animate-marquee gap-5">
                                 <!-- First Loop (5 Images) -->
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin1.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80';" alt="독서와 토론의 광장 북 컨퍼런스 강연" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-amber-600 text-white px-2.5 py-1 rounded-full w-max mb-1">마음 특강</span>
-                                        <p class="text-sm font-semibold leading-tight">다양한 삶을 읽는 독서와 토론의 광장 강연</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-amber-600 text-white px-3 py-1 rounded-full w-max mb-1.5">마음 특강</span>
+                                        <p class="text-base font-semibold leading-snug">다양한 삶을 읽는 독서와 토론의 광장 강연</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin2.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80';" alt="내 인생을 바꾸는 변화와 성장 워크숍" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-full w-max mb-1">동기부여 &amp; 코칭</span>
-                                        <p class="text-sm font-semibold leading-tight">내 인생을 바꾸는 변화와 성장 워크숍</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-emerald-600 text-white px-3 py-1 rounded-full w-max mb-1.5">동기부여 &amp; 코칭</span>
+                                        <p class="text-base font-semibold leading-snug">내 인생을 바꾸는 변화와 성장 워크숍</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin3.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80';" alt="현대인을 위한 마음상담 세미나" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-indigo-600 text-white px-2.5 py-1 rounded-full w-max mb-1">대형 세미나</span>
-                                        <p class="text-sm font-semibold leading-tight">현대인을 위한 마음상담 세미나 &amp; 소통</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-indigo-600 text-white px-3 py-1 rounded-full w-max mb-1.5">대형 세미나</span>
+                                        <p class="text-base font-semibold leading-snug">현대인을 위한 마음상담 세미나 &amp; 소통</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin4.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80';" alt="미래 트렌드 및 리더십 컨퍼런스 현장" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-rose-600 text-white px-2.5 py-1 rounded-full w-max mb-1">미래 비전 강연</span>
-                                        <p class="text-sm font-semibold leading-tight">미래 트렌드 및 리더십 컨퍼런스 현장</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-rose-600 text-white px-3 py-1 rounded-full w-max mb-1.5">미래 비전 강연</span>
+                                        <p class="text-base font-semibold leading-snug">미래 트렌드 및 리더십 컨퍼런스 현장</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin5.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80';" alt="2026 북앤피플 컨퍼런스 독서 토론 회의 현장" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-brand-600 text-white px-2.5 py-1 rounded-full w-max mb-1">광주 독서·북 컨퍼런스</span>
-                                        <p class="text-sm font-semibold leading-tight">독서를 통한 소통과 공동체의 성장 세미나</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-brand-600 text-white px-3 py-1 rounded-full w-max mb-1.5">광주 독서·북 컨퍼런스</span>
+                                        <p class="text-base font-semibold leading-snug">독서를 통한 소통과 공동체의 성장 세미나</p>
                                     </div>
                                 </div>
 
                                 <!-- Second Loop for Seamless Infinite Scroll -->
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin1.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80';" alt="독서와 토론의 광장 북 컨퍼런스 강연" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-amber-600 text-white px-2.5 py-1 rounded-full w-max mb-1">마음 특강</span>
-                                        <p class="text-sm font-semibold leading-tight">다양한 삶을 읽는 독서와 토론의 광장 강연</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-amber-600 text-white px-3 py-1 rounded-full w-max mb-1.5">마음 특강</span>
+                                        <p class="text-base font-semibold leading-snug">다양한 삶을 읽는 독서와 토론의 광장 강연</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin2.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80';" alt="내 인생을 바꾸는 변화와 성장 워크숍" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-full w-max mb-1">동기부여 &amp; 코칭</span>
-                                        <p class="text-sm font-semibold leading-tight">내 인생을 바꾸는 변화와 성장 워크숍</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-emerald-600 text-white px-3 py-1 rounded-full w-max mb-1.5">동기부여 &amp; 코칭</span>
+                                        <p class="text-base font-semibold leading-snug">내 인생을 바꾸는 변화와 성장 워크숍</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin3.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80';" alt="현대인을 위한 마음상담 세미나" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-indigo-600 text-white px-2.5 py-1 rounded-full w-max mb-1">대형 세미나</span>
-                                        <p class="text-sm font-semibold leading-tight">현대인을 위한 마음상담 세미나 &amp; 소통</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-indigo-600 text-white px-3 py-1 rounded-full w-max mb-1.5">대형 세미나</span>
+                                        <p class="text-base font-semibold leading-snug">현대인을 위한 마음상담 세미나 &amp; 소통</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin4.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80';" alt="미래 트렌드 및 리더십 컨퍼런스 현장" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-rose-600 text-white px-2.5 py-1 rounded-full w-max mb-1">미래 비전 강연</span>
-                                        <p class="text-sm font-semibold leading-tight">미래 트렌드 및 리더십 컨퍼런스 현장</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-rose-600 text-white px-3 py-1 rounded-full w-max mb-1.5">미래 비전 강연</span>
+                                        <p class="text-base font-semibold leading-snug">미래 트렌드 및 리더십 컨퍼런스 현장</p>
                                     </div>
                                 </div>
 
-                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-md border border-stone-200/60 w-80 sm:w-[450px] h-56 sm:h-[300px]">
+                                <div class="shrink-0 relative group rounded-2xl overflow-hidden shadow-lg border border-stone-200/60 w-80 sm:w-[500px] h-60 sm:h-[340px]">
                                     <img src="imagin5.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80';" alt="2026 북앤피플 컨퍼런스 독서 토론 회의 현장" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left text-white">
-                                        <span class="text-xs font-bold bg-brand-600 text-white px-2.5 py-1 rounded-full w-max mb-1">광주 독서·북 컨퍼런스</span>
-                                        <p class="text-sm font-semibold leading-tight">독서를 통한 소통과 공동체의 성장 세미나</p>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end text-left text-white">
+                                        <span class="text-xs font-bold bg-brand-600 text-white px-3 py-1 rounded-full w-max mb-1.5">광주 독서·북 컨퍼런스</span>
+                                        <p class="text-base font-semibold leading-snug">독서를 통한 소통과 공동체의 성장 세미나</p>
                                     </div>
                                 </div>
                             </div>
@@ -581,7 +580,7 @@
                                 <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">상담사 커뮤니티 게시판</h1>
                                 <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed max-w-2xl">
                                     현장의 고민, 임상 사례 피드백, 서식 및 절차 질의응답을 동료 상담사와 나누세요.<br class="hidden sm:inline"/>
-                                    내담자 정보 보호를 위해 **댓글 대신 1:1 대화 요청** 시스템으로 운영됩니다.
+                                    내담자 정보 보호를 위해 <strong>댓글 대신 1:1 대화 요청</strong> 시스템으로 운영됩니다.
                                 </p>
                             </div>
                             <button id="openWritePostBtn" class="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5">
@@ -596,9 +595,6 @@
                             <button data-cat="ALL" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-xs">전체</button>
                             <button data-cat="현장고민" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">현장고민</button>
                             <button data-cat="질의응답" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">질의응답</button>
-                            <button data-cat="피드백요청" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">피드백요청</button>
-                            <button data-cat="사례연구" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">사례연구</button>
-                            <button data-cat="정보공유" class="comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">정보공유</button>
                         </div>
 
                         <div class="relative w-full md:w-64">
@@ -650,23 +646,6 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                                 <span>섭외/강연 요청하기</span>
                             </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-warm-50 p-4 rounded-2xl border border-stone-200/80 mb-6 flex flex-col gap-3">
-                        <div class="text-xs font-bold text-slate-500 mb-1 flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.447.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
-                            <span>협업 및 섭외 요청 카테고리 필터</span>
-                        </div>
-                        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none flex-wrap" id="requestCategoryFilters">
-                            <button data-req-cat="ALL" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-xs">전체 보기</button>
-                            <button data-req-cat="마음 특강·강연" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[마음 특강·강연]</button>
-                            <button data-req-cat="힐링 워크숍·체험" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[힐링 워크숍·체험]</button>
-                            <button data-req-cat="소그룹·집단상담" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[소그룹·집단상담]</button>
-                            <button data-req-cat="1:1 개인상담 파견" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[1:1 개인상담 파견]</button>
-                            <button data-req-cat="축제·행사 마음부스" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[축제·행사 마음부스]</button>
-                            <button data-req-cat="사례 자문·슈퍼비전" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[사례 자문·슈퍼비전]</button>
-                            <button data-req-cat="긴급 위기 지원" class="req-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">[긴급 위기 지원]</button>
                         </div>
                     </div>
 
@@ -734,6 +713,13 @@
 
                     <div id="expertGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
 
+                    <div class="flex flex-col sm:flex-row items-center justify-between border-t border-slate-200 pt-6 gap-4">
+                        <div class="text-xs text-slate-500 font-medium">
+                            총 <span id="totalExpertsCount" class="font-bold text-slate-900">0</span>명의 전문가 중 <span id="currentExpRange">0 - 0</span>
+                        </div>
+                        <div class="flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center" id="expPaginationButtons"></div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -762,7 +748,8 @@
         </div>
     </footer>
 
-    <!-- Modal: Request Detail Modal -->
+    <!-- Modals -->
+    <!-- Request Detail Modal -->
     <div id="requestDetailModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100 max-h-[88vh] flex flex-col">
             <button id="closeReqDetailModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
@@ -787,85 +774,13 @@
             <div class="pt-4 flex items-center justify-between gap-3">
                 <button id="closeReqDetailBtn" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-600 font-medium text-xs hover:bg-slate-200">닫기</button>
                 <button id="applyForReqBtn" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-brand-600/20">
-                    전문가 섭외 응모 / 문의하기
+                    문의하기
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Modal: Write Request Modal -->
-    <div id="writeRequestModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100">
-            <button id="closeWriteReqModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-
-            <div class="mb-5">
-                <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 font-bold text-xs mb-1">섭외 요청 공고 등록</span>
-                <h2 class="text-xl font-bold text-slate-900">전문가 섭외/강연 요청서 작성</h2>
-            </div>
-
-            <form id="createRequestForm" class="space-y-3.5 text-xs sm:text-sm">
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">요청 카테고리 <span class="text-rose-500">*</span></label>
-                    <select id="reqCategory" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-brand-500 outline-none bg-white text-xs">
-                        <option value="마음 특강·강연">[마음 특강·강연] 부모교육, 특강, 직원연수</option>
-                        <option value="힐링 워크숍·체험">[힐링 워크숍·체험] 마인드풀니스, 매체치료</option>
-                        <option value="소그룹·집단상담">[소그룹·집단상담] 학급/팀 단위 집단 프로그램</option>
-                        <option value="1:1 개인상담 파견">[1:1 개인상담 파견] EAP 전담, 위탁 단기 상담</option>
-                        <option value="축제·행사 마음부스">[축제·행사 마음부스] 행사 체험 부스 운영</option>
-                        <option value="사례 자문·슈퍼비전">[사례 자문·슈퍼비전] 사례회의 자문, 슈퍼비전</option>
-                        <option value="긴급 위기 지원">[긴급 위기 지원] 재난, 위기사건 사후 개입</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">행사명 / 주제 <span class="text-rose-500">*</span></label>
-                    <input type="text" id="reqTitle" required placeholder="예: 2026 청소년 마음건강 특강 강사 모심" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-brand-500 outline-none text-xs">
-                </div>
-
-                <div class="grid grid-cols-2 gap-2.5">
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-800">요청 기관 <span class="text-rose-500">*</span></label>
-                        <input type="text" id="reqOrg" required placeholder="예: OO구 청소년상담센터" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
-                    </div>
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-800">일시 및 장소 <span class="text-rose-500">*</span></label>
-                        <input type="text" id="reqDateTime" required placeholder="예: 2026.11.15(목) / 광주 서구" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-2.5">
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-800">대상 및 인원</label>
-                        <input type="text" id="reqTarget" placeholder="예: 관내 중학생 30명" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
-                    </div>
-                    <div>
-                        <label class="block font-semibold mb-1 text-slate-800">강사료 / 상담수당</label>
-                        <input type="text" id="reqFee" value="상의 후 결정" readonly class="w-full px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 outline-none text-xs font-bold">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">필요 자격 조건</label>
-                    <input type="text" id="reqQual" placeholder="예: 청소년상담사 2급 이상 / 심리상담 2급 우대" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
-                </div>
-
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">상세 요청 내용 <span class="text-rose-500">*</span></label>
-                    <textarea id="reqBody" rows="4" required placeholder="세부 강연 내용 및 요청 조건을 적어주세요." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs resize-none"></textarea>
-                </div>
-
-                <div class="pt-2">
-                    <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md shadow-brand-600/20 text-sm">
-                        섭외 요청 공고 등록하기
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal: Write Post Modal -->
+    <!-- Modal: Write Community Post Modal -->
     <div id="writePostModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100">
             <button id="closeWritePostModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
@@ -883,9 +798,6 @@
                     <select id="writeCategory" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-brand-500 outline-none bg-white text-xs">
                         <option value="현장고민">현장고민</option>
                         <option value="질의응답">질의응답</option>
-                        <option value="피드백요청">피드백요청</option>
-                        <option value="사례연구">사례연구</option>
-                        <option value="정보공유">정보공유</option>
                     </select>
                 </div>
 
@@ -908,34 +820,6 @@
         </div>
     </div>
 
-    <!-- Modal: Expert Detail Modal -->
-    <div id="expertDetailModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
-            <button id="closeExpertDetailModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-
-            <div class="text-center mb-5">
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-sky-500 text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md" id="expModalAvatar">
-                    김
-                </div>
-                <h3 class="text-xl font-bold text-slate-900" id="expModalName">김OO 선생님</h3>
-                <p class="text-xs text-brand-600 font-semibold mt-0.5" id="expModalJob">전문 심리상담사 1급</p>
-            </div>
-
-            <div class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-5">
-                <div><strong class="text-slate-900 block mb-1">주요 전문 분야:</strong> <span id="expModalTopic"></span></div>
-                <div><strong class="text-slate-900 block mb-1">활동 가능 지역:</strong> <span id="expModalRegion"></span></div>
-                <div><strong class="text-slate-900 block mb-1">전문가 소개:</strong> <span id="expModalBio" class="leading-relaxed"></span></div>
-            </div>
-
-            <button id="expContactTriggerBtn" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold transition-all shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                <span>선생님께 1:1 섭외 대화 신청</span>
-            </button>
-        </div>
-    </div>
-
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
@@ -954,10 +838,7 @@
                     <input type="text" id="loginUsername" required placeholder="아이디를 입력하세요" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-brand-500">
                 </div>
                 <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label class="font-semibold text-slate-800">비밀번호</label>
-                        <button type="button" id="openFindModalBtn" class="text-xs text-slate-500 hover:text-brand-600 underline font-medium">아이디 / 비밀번호 찾기</button>
-                    </div>
+                    <label class="block font-semibold mb-1 text-slate-800">비밀번호</label>
                     <input type="password" id="loginPassword" required placeholder="비밀번호를 입력하세요" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-brand-500">
                 </div>
 
@@ -974,55 +855,6 @@
                     블링크 커뮤니티 참여하기
                 </button>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal: Find ID / Password -->
-    <div id="findModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
-            <button id="closeFindModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-
-            <div class="text-center mb-5">
-                <h2 class="text-xl font-bold text-slate-900">아이디 / 비밀번호 찾기</h2>
-                <p class="text-xs text-slate-500 mt-1">가입 시 등록하신 정보로 찾을 수 있습니다.</p>
-            </div>
-
-            <div class="flex border-b border-slate-200 mb-5 text-xs font-bold text-center">
-                <button id="tabFindId" type="button" class="flex-1 py-2.5 text-brand-600 border-b-2 border-brand-600">아이디 찾기</button>
-                <button id="tabFindPw" type="button" class="flex-1 py-2.5 text-slate-400 border-b-2 border-transparent hover:text-slate-600">비밀번호 찾기</button>
-            </div>
-
-            <!-- 아이디 찾기 폼 -->
-            <form id="findIdForm" class="space-y-3.5 text-xs sm:text-sm">
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">성명 <span class="text-rose-500">*</span></label>
-                    <input type="text" id="findIdName" required placeholder="성명을 입력하세요 (예: 홍길동)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none">
-                </div>
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">이메일 주소 <span class="text-rose-500">*</span></label>
-                    <input type="email" id="findIdEmail" required placeholder="example@blink.kr" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md text-xs sm:text-sm mt-2">
-                    아이디 찾기
-                </button>
-            </form>
-
-            <!-- 비밀번호 찾기 폼 -->
-            <form id="findPwForm" class="space-y-3.5 text-xs sm:text-sm hidden">
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">아이디 <span class="text-rose-500">*</span></label>
-                    <input type="text" id="findPwUsername" required placeholder="아이디를 입력하세요" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none">
-                </div>
-                <div>
-                    <label class="block font-semibold mb-1 text-slate-800">이메일 주소 <span class="text-rose-500">*</span></label>
-                    <input type="email" id="findPwEmail" required placeholder="example@blink.kr" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md text-xs sm:text-sm mt-2">
-                    비밀번호 확인하기
-                </button>
-            </form>
         </div>
     </div>
 
@@ -1101,74 +933,12 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="block font-semibold mb-1.5 text-slate-800">알게 된 경로 <span class="text-slate-400 font-normal text-xs">(중복 선택 가능)</span></label>
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
-                            <input type="checkbox" name="applySources" value="지인/동료 추천" class="rounded text-brand-600">
-                            <span>지인 / 동료 추천</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
-                            <input type="checkbox" name="applySources" value="학회/협회 게시판" class="rounded text-brand-600">
-                            <span>학회 / 협회 게시판</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
-                            <input type="checkbox" name="applySources" value="SNS/포털 검색" class="rounded text-brand-600">
-                            <span>SNS / 포털 검색</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
-                            <input type="checkbox" name="applySources" value="기타" class="rounded text-brand-600">
-                            <span>기타</span>
-                        </label>
-                    </div>
-                </div>
-
                 <div class="pt-2">
                     <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-lg shadow-brand-600/20 text-sm">
                         가입 완료하고 블링크 시작하기
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Modal 4: Inquiry & Suggestion Modal -->
-    <div id="inquiryModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
-            <button id="closeInquiryModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-3">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                </div>
-                <h2 class="text-xl font-bold text-slate-900">문의 및 제안하기</h2>
-                <p class="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">
-                    블링크 커뮤니티 관련 문의사항이나 제안하고 싶은 내용을 보내주세요.
-                </p>
-            </div>
-
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-5">
-                <div class="text-xs font-bold text-slate-500 mb-1">공식 대표 이메일</div>
-                <div class="flex items-center justify-between gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
-                    <span id="inquiryEmailText" class="font-en font-bold text-sm text-brand-700 select-all">blinkcomu@gmail.com</span>
-                    <a href="mailto:blinkcomu@gmail.com?subject=%5BBlink%20%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B3%5D%20%EB%AC%B8%EC%9D%98%20%EB%B0%8F%20%EC%A0%9C%EC%95%80" class="px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shrink-0 inline-flex items-center gap-1 shadow-sm">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        <span>이메일 보내기</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="space-y-2.5">
-                <a href="mailto:blinkcomu@gmail.com?subject=%5BBlink%20%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B3%5D%20%EB%AC%B8%EC%9D%98%20%EB%B0%8F%20%EC%A0%9C%EC%95%80" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors shadow-md shadow-brand-600/20 text-xs sm:text-sm flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    <span>이메일 보내기</span>
-                </a>
-                <button id="closeInquiryBtn" type="button" class="w-full py-2.5 rounded-xl bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 transition-colors text-xs">
-                    닫기
-                </button>
-            </div>
         </div>
     </div>
 
@@ -1191,7 +961,7 @@
             </div>
             <div class="overflow-y-auto py-4 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-b border-slate-100 my-2 whitespace-pre-line" id="detailPostBody"></div>
             <div class="pt-4 flex items-center justify-between gap-3">
-                <button id="closePostDetailBtn" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-600 font-medium text-xs">닫기</button>
+                <button id="closePostDetailBtn" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-600 font-medium text-xs hover:bg-slate-200">닫기</button>
                 <button id="triggerChatRequestBtn" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-brand-600/20 inline-flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                     <span>1:1 비공개 대화 요청</span>
@@ -1214,18 +984,7 @@
 
             <div class="overflow-y-auto pr-2 space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-b border-slate-100 py-4 my-2">
                 <h3 class="font-bold text-slate-900 text-sm">제 1 조 (목적)</h3>
-                <p>본 약관은 Blink 커뮤니티(이하 "커뮤니티")가 제공하는 전문 심리상담사 및 관련 전문가 교류 서비스의 이용조건 및 절차, 회원과 커뮤니티 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
-
-                <h3 class="font-bold text-slate-900 text-sm">제 2 조 (회원 자격 및 승인)</h3>
-                <p>1. 본 커뮤니티는 전문 심리상담사, 임상심리사, 상담전공 수련생 등 전문 자격을 보유하거나 이에 준하는 전문가를 대상으로 합니다.<br>
-                2. 서비스 참여 신청 후 운영자의 최종 승인 절차를 거쳐 이용 권한이 부여됩니다.</p>
-
-                <h3 class="font-bold text-slate-900 text-sm">제 3 조 (비밀유지 및 내담자 정보 보호)</h3>
-                <p>1. 회원은 사례 연구 및 커뮤니티 소통 중 내담자의 개인식별정보가 노출되지 않도록 엄격히 가명화 및 익명화해야 합니다.<br>
-                2. 커뮤니티 내부에서 교류된 동료 상담사의 정보 및 비공개 수퍼비전 내용을 외부로 유출하는 것은 금지됩니다.</p>
-
-                <h3 class="font-bold text-slate-900 text-sm">제 4 조 (게시물 관리 및 이용 제한)</h3>
-                <p>상호 존중과 전문성을 해치는 비방, 허위사실 유포, 무단 상업적 광고 게시글은 운영자에 의해 사전 통보 없이 삭제되거나 회원 자격이 제한될 수 있습니다.</p>
+                <p>본 약관은 Blink 커뮤니티가 제공하는 서비스의 이용조건 및 절차를 규정합니다.</p>
             </div>
 
             <div class="pt-3 text-right">
@@ -1249,19 +1008,45 @@
             </div>
 
             <div class="overflow-y-auto pr-2 space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-b border-slate-100 py-4 my-2">
-                <h3 class="font-bold text-slate-900 text-sm">1. 개인정보의 수집 항목 및 목적</h3>
-                <p>커뮤니티는 전문가 자격 인증 및 서비스 제공을 위해 이름, 생년월일, 연락처, 이메일, 자격증, 직업/직책 정보를 수집합니다.</p>
-
-                <h3 class="font-bold text-slate-900 text-sm">2. 개인정보의 보유 및 이용 기간</h3>
-                <p>회원 탈퇴 요청 시까지 보관되며, 탈퇴 시 지체 없이 파기됩니다. 단, 관련 법령의 규정에 의하여 보존할 필요가 있는 경우 일정 기간 보관합니다.</p>
-
-                <h3 class="font-bold text-slate-900 text-sm">3. 제3자 제공 및 위탁</h3>
-                <p>수집된 개인정보는 동의 없이 외부에 제공되거나 위탁되지 않습니다.</p>
+                <h3 class="font-bold text-slate-900 text-sm">1. 수집 항목 및 목적</h3>
+                <p>커뮤니티는 서비스 제공을 위해 이름, 아이디, 자격사항 등을 수집합니다.</p>
             </div>
 
             <div class="pt-3 text-right">
                 <button id="confirmPrivacyModal" class="px-6 py-2.5 rounded-xl bg-brand-600 text-white font-bold text-xs sm:text-sm hover:bg-brand-700 transition-colors">
                     확인 및 닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Inquiry & Suggestion Modal -->
+    <div id="inquiryModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
+            <button id="closeInquiryModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-slate-900">문의 및 제안하기</h2>
+                <p class="text-slate-500 text-xs sm:text-sm mt-1">
+                    블링크 커뮤니티 관련 문의사항을 전달해주세요.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-5">
+                <div class="text-xs font-bold text-slate-500 mb-1">공식 대표 이메일</div>
+                <div class="flex items-center justify-between gap-2 bg-white p-2.5 rounded-xl border border-slate-200">
+                    <span class="font-en font-bold text-sm text-brand-700 select-all">blinkcomu@gmail.com</span>
+                </div>
+            </div>
+
+            <div class="space-y-2.5">
+                <a href="mailto:blinkcomu@gmail.com" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
+                    <span>이메일 보내기</span>
+                </a>
+                <button id="closeInquiryBtn" type="button" class="w-full py-2.5 rounded-xl bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 text-xs">
+                    닫기
                 </button>
             </div>
         </div>
@@ -1279,6 +1064,34 @@
         </div>
     </div>
 
+    <!-- Modal: Expert Detail Modal -->
+    <div id="expertDetailModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100">
+            <button id="closeExpertDetailModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="text-center mb-5">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-sky-500 text-white font-bold text-2xl flex items-center justify-center mx-auto mb-3 shadow-md" id="expModalAvatar">
+                    김
+                </div>
+                <h3 class="text-xl font-bold text-slate-900" id="expModalName">김OO 선생님</h3>
+                <p class="text-xs text-brand-600 font-semibold mt-0.5" id="expModalJob">전문 심리상담사 1급</p>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-5">
+                <div><strong class="text-slate-900 block mb-1">주요 전문 분야:</strong> <span id="expModalTopic"></span></div>
+                <div><strong class="text-slate-900 block mb-1">활동 가능 지역:</strong> <span id="expModalRegion"></span></div>
+                <div><strong class="text-slate-900 block mb-1">전문가 소개:</strong> <span id="expModalBio" class="leading-relaxed"></span></div>
+            </div>
+
+            <button id="expContactTriggerBtn" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold transition-all shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                <span>선생님께 1:1 섭외 대화 신청</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Application Script -->
     <script type="module">
         // Default seed datasets
@@ -1289,7 +1102,68 @@
             { username: "trainee", password: "1234", name: "최수련", email: "trainee@blink.kr", status: "APPROVED", job: "수련생/대학원생", certs: ["청소년상담사"] }
         ];
 
-        // D-Day Calculator helper for 11/04 deadline
+        // Generator for 45 Virtual Expert Profiles
+        function generateVirtualExperts() {
+            const familyNames = ["김", "박", "이", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍", "전", "고", "문", "양", "손"];
+            const givenLastNames = ["재", "영", "훈", "진", "우", "현", "연", "은", "아", "희", "성", "경", "민", "수", "주", "혁", "원", "하", "림", "호", "준"];
+            
+            const jobs = [
+                "전문 심리상담사 1급",
+                "임상심리사 1급 / EAP 코치",
+                "정신건강임상심리사 1급",
+                "상담심리사 2급",
+                "수퍼바이저 / 자문위원",
+                "미술·매체치료 전문가",
+                "청소년상담사 1급",
+                "EAP 전문 상담사",
+                "부부 및 가족치료사",
+                "독서·매체 심리치료 전문가"
+            ];
+
+            const topics = [
+                { cat: "부모교육/아동청소년", text: "부모교육 / 아동청소년 특강" },
+                { cat: "기업EAP/조직소통", text: "기업 EAP / 임직원 힐링 코칭" },
+                { cat: "위기개입/트라우마", text: "위기개입 / 재난 트라우마 파견" },
+                { cat: "심리검사해설", text: "TCI / MBTI 심리검사 집단해설" },
+                { cat: "슈퍼비전/사례자문", text: "사례 자문위원 / 수퍼비전 제공" }
+            ];
+
+            const regions = [
+                { cat: "광주광역시", text: "광주광역시 전체 (동구·서구·남구·북구·광산구)" },
+                { cat: "전남 서부권", text: "전남 서부권 (목포·나주·무안·영암 등)" },
+                { cat: "전남 동부권", text: "전남 동부권 (순천·여수·광양·구례 등)" }
+            ];
+
+            const bios = [
+                "15년간 아동청소년 상담 및 자아존중감 향상 집단 프로그램을 진행해 왔습니다.",
+                "공공기관 및 기업 임직원 번아웃 예방 힐링 워크숍과 조직 코칭 전문가입니다.",
+                "재난 및 현장 위기 사건 응급 심리 지원과 트라우마 개입 전문 상담사입니다.",
+                "TCI, MBTI 및 HTP 검사를 활용한 소통 워크숍 및 1:1 심층 해설 진행.",
+                "초심 상담사 및 기관 전담자를 위한 1:1 수퍼비전과 사례 자문을 제공합니다."
+            ];
+
+            const experts = [];
+            for (let i = 0; i < 45; i++) {
+                const f = familyNames[i % familyNames.length];
+                const l = givenLastNames[i % givenLastNames.length];
+                const maskedName = `${f}O${l}`;
+                const topicObj = topics[i % topics.length];
+                const regionObj = regions[i % regions.length];
+
+                experts.push({
+                    id: `exp-${i + 1}`,
+                    name: maskedName,
+                    job: jobs[i % jobs.length],
+                    topicCategory: topicObj.cat,
+                    topicText: topicObj.text,
+                    regionCategory: regionObj.cat,
+                    regionText: regionObj.text,
+                    bio: bios[i % bios.length]
+                });
+            }
+            return experts;
+        }
+
         function calculateDDay() {
             const now = new Date();
             const deadline = new Date("2026-11-04T23:59:59");
@@ -1305,7 +1179,6 @@
             }
         }
 
-        // Generator for 2026.04 ~ 2026.10 Requests Dataset
         function generateRequestsDataset() {
             const ddayStatus = calculateDDay();
 
@@ -1325,41 +1198,6 @@
                 ddayText: ddayStatus.text
             };
 
-            const popUpAndSpecialTopics = [
-                {
-                    cat: "축제·행사 마음부스",
-                    title: "광주 동명동 팝업스토어 '마음쉼터' 숏상담사 & 라이프 코칭 전문가 모집",
-                    org: "광주 동구 청년창업지원센터",
-                    target: "팝업스토어 방문 시민 및 청년 (1일 50명 예상)",
-                    qual: "상담심리사 2급 이상 / 전문코치 자격 소지자",
-                    body: "광주 동명동 카페거리 팝업스토어 현장에서 10분 간이 심리점검 및 1:1 라이프 코칭을 진행해주실 선생님을 모십니다."
-                },
-                {
-                    cat: "힐링 워크숍·체험",
-                    title: "여수 해양공원 체험형 팝업 부스 - 멘탈 헬스케어 멘토 & 컨설턴트 구함",
-                    org: "(주)전남콘텐츠코리아랩 파트너스",
-                    target: "관광객 및 지역 청년 80명",
-                    qual: "EAP 상주 상담사 경력 / 조직 및 커리어 컨설팅 경험자",
-                    body: "여수 해양공원 팝업 공간에서 멘탈 헬스케어 지수 측정 후 직무 스트레스 컨설팅을 전달해주실 전문가를 모십니다."
-                },
-                {
-                    cat: "마음 특강·강연",
-                    title: "순천 문화공간 팝업스토어 스타트업 대표 대상 엑셀러레이터 멘토링 & 멘탈 코칭",
-                    org: "전남 창조경제혁신센터",
-                    target: "팝업스토어 참가 소상공인 & 스타트업 대표 15명",
-                    qual: "경영/조직 심리 코칭 전문가 / 스타트업 엑셀러레이터 코치",
-                    body: "창업 초기 번아웃 방지 및 사업 가치관 정립을 위해 팝업 참가 대표님 대상 1:1 코칭을 제공해주실 전문가를 구합니다."
-                },
-                {
-                    cat: "1:1 개인상담 파견",
-                    title: "광주 팝업스토어 스태프 대상 EAP 1:1 현장 코칭 파견",
-                    org: "광주광역시 EAP 운영본부",
-                    target: "팝업 현장 근무자 및 단기 스태프 20명",
-                    qual: "산업심리 / EAP 전담 상담사 / 1:1 코치",
-                    body: "단기 감정노동에 노출된 팝업스토어 스태프들의 마음건강 보호를 위한 1:1 현장 코칭 전문가를 모십니다."
-                }
-            ];
-
             const standardTopics = [
                 {
                     cat: "마음 특강·강연",
@@ -1368,63 +1206,29 @@
                     target: "관내 중·고등학생 40명",
                     qual: "청소년상담사 2급 이상 / 전문상담사 2급 이상",
                     body: "청소년기의 학업 스트레스 및 자아정체성 확립을 돕기 위한 마음건강 특강입니다."
-                },
-                {
-                    cat: "힐링 워크숍·체험",
-                    title: "임직원 번아웃 예방 및 스트레스 관리 힐링 워크숍",
-                    org: "광주 광산구청 EAP 운영팀",
-                    target: "소속 공무원 및 공공기관 임직원 25명",
-                    qual: "EAP 전문 상담사 / 마인드풀니스·매체치료 전문가",
-                    body: "조직 내 감정노동 및 업무 스트레스 완화를 위한 체험형 힐링 프로그램입니다."
-                },
-                {
-                    cat: "소그룹·집단상담",
-                    title: "학급 단위 또래관계 개선 소그룹 집단상담 진행자 섭외",
-                    org: "전라남도 나주교육지원청",
-                    target: "초등학교 5학년 4개 학급 (각 20명 내외)",
-                    qual: "집단상담 경험 20시간 이상 보유자 / 관련 학회 2급 이상",
-                    body: "새 학기 적응 및 또래 관계 형성을 돕기 위한 단기 소그룹 집단상담 프로그램입니다."
                 }
             ];
 
             const requests = [featuredPost];
-            const startDate = new Date(2026, 3, 1).getTime();
-            const endDate = new Date(2026, 9, 25).getTime();
-
-            for (let i = 0; i < 95; i++) {
-                const isPopUp = (i % 2 === 0);
-                const topicObj = isPopUp 
-                    ? popUpAndSpecialTopics[(i / 2) % popUpAndSpecialTopics.length] 
-                    : standardTopics[Math.floor(i / 2) % standardTopics.length];
-
-                const timeRatio = i / 94;
-                const itemTime = new Date(endDate - timeRatio * (endDate - startDate));
-                const y = itemTime.getFullYear();
-                const m = String(itemTime.getMonth() + 1).padStart(2, '0');
-                const d = String(itemTime.getDate()).padStart(2, '0');
-                const status = (m === '10') ? "모집중" : "모집완료";
-
+            for (let i = 0; i < 40; i++) {
                 requests.push({
                     id: `req-${i + 1}`,
-                    category: topicObj.cat,
-                    title: topicObj.title,
-                    org: topicObj.org,
-                    dateTime: `${y}.${m}.${d} / 전남·광주 지역 현장`,
-                    target: topicObj.target,
+                    category: standardTopics[0].cat,
+                    title: standardTopics[0].title,
+                    org: standardTopics[0].org,
+                    dateTime: "2026.11.15 / 전남·광주 현장",
+                    target: standardTopics[0].target,
                     fee: "상의 후 결정",
-                    qual: topicObj.qual,
-                    body: `【요청 상세 안내】\n기관: ${topicObj.org}\n일시: ${y}년 ${m}월 ${d}일 예정\n\n${topicObj.body}\n\n지원 조건 및 세부 수당 규정은 수락 후 협의를 진행합니다.`,
-                    status: status,
-                    date: `${y}.${m}.${d}`
+                    qual: standardTopics[0].qual,
+                    body: standardTopics[0].body,
+                    status: "모집중",
+                    date: "2026.10.25"
                 });
             }
             return requests;
         }
 
-        // Generator for 2026.03 ~ 2026.10 Community Board Posts
         function generatePostsDataset() {
-            const surnames = ["김", "박", "이", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍"];
-            
             const detailedTopics = [
                 {
                     cat: "현장고민",
@@ -1432,75 +1236,44 @@
                     body: "부모님의 강요로 센터에 오게 된 중학교 2학년 내담자입니다.\n초기 2회기 동안 침묵으로 일관하거나 '모르겠어요'로만 응답하고 있는데, 매체 활용 전략이나 대화법 노하우가 궁금합니다."
                 },
                 {
-                    cat: "피드백요청",
-                    title: "성인 내담자 HTP 및 TCI 프로파일 해석 관련 조언 부탁드립니다",
-                    body: "30대 여성 내담자의 TCI 결과, 자극추구(NS)는 매우 낮고 위험회피(HA)와 사회적 민감성(RD)이 상위 95% 이상으로 나타났습니다."
-                },
-                {
                     cat: "질의응답",
                     title: "공공기관 연계 상담 시 개인정보 및 동의서 간소화 서식 양식 공유 가능할까요?",
                     body: "지자체 연계 사업으로 위탁 상담을 진행 중인데, 초기 수속 서류가 너무 복잡하여 간소화된 서식을 공유받고 싶습니다."
-                },
-                {
-                    cat: "사례연구",
-                    title: "경계선 인격특성(BPD) 내담자의 치료적 경계 설정(Boundary Setting) 사례",
-                    body: "회기 외 시간에 긴급 메시지를 자주 보내시며 의존성을 보이는 내담자와의 치료적 경계 설정 경과입니다."
-                },
-                {
-                    cat: "정보공유",
-                    title: "2026년 하반기 학회 보수교육 인정 일정 및 지역 수퍼비전 일정 모음",
-                    body: "한국상담학회 및 한국상담심리학회 자격 유지를 위해 하반기에 진행되는 온라인 보수교육과 수퍼비전 일정을 정리했습니다."
                 }
             ];
 
             const posts = [];
-            const startDate = new Date(2026, 2, 1).getTime();
-            const endDate = new Date(2026, 9, 25).getTime();
-
-            for (let i = 0; i < 110; i++) {
+            for (let i = 0; i < 30; i++) {
                 const topic = detailedTopics[i % detailedTopics.length];
-                const surname = surnames[i % surnames.length];
-                const timeRatio = i / 109;
-                const itemTime = new Date(endDate - timeRatio * (endDate - startDate));
-                const y = itemTime.getFullYear();
-                const m = String(itemTime.getMonth() + 1).padStart(2, '0');
-                const d = String(itemTime.getDate()).padStart(2, '0');
-
                 posts.push({
                     id: `post-${i + 1}`,
                     category: topic.cat,
                     title: topic.title,
                     body: topic.body,
-                    author: `${surname}**`,
-                    date: `${y}.${m}.${d}`
+                    author: `김**`,
+                    date: `2026.10.28`
                 });
             }
             return posts;
         }
 
         function getStoredRequests() {
-            const stored = localStorage.getItem('blink_requests_v10');
+            const stored = localStorage.getItem('blink_requests_v12');
             if (stored) {
-                try {
-                    const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed) && parsed.length >= 80) return parsed;
-                } catch (e) {}
+                try { return JSON.parse(stored); } catch (e) {}
             }
             const generated = generateRequestsDataset();
-            localStorage.setItem('blink_requests_v10', JSON.stringify(generated));
+            localStorage.setItem('blink_requests_v12', JSON.stringify(generated));
             return generated;
         }
 
         function getStoredPosts() {
-            const stored = localStorage.getItem('blink_posts_v10');
+            const stored = localStorage.getItem('blink_posts_v12');
             if (stored) {
-                try {
-                    const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed) && parsed.length >= 80) return parsed;
-                } catch (e) {}
+                try { return JSON.parse(stored); } catch (e) {}
             }
             const generated = generatePostsDataset();
-            localStorage.setItem('blink_posts_v10', JSON.stringify(generated));
+            localStorage.setItem('blink_posts_v12', JSON.stringify(generated));
             return generated;
         }
 
@@ -1517,29 +1290,7 @@
         let userList = getStoredUsers();
         let requestList = getStoredRequests();
         let communityPosts = getStoredPosts();
-
-        const initialExperts = [
-            {
-                id: "exp-1",
-                name: "김민재",
-                job: "전문 심리상담사 1급",
-                topicCategory: "부모교육/아동청소년",
-                topicText: "부모교육 / 아동청소년 특강",
-                regionCategory: "광주광역시",
-                regionText: "광주광역시 전체 (동구·서구·남구·북구·광산구)",
-                bio: "15년간 아동청소년 상담 및 자아존중감 향상 집단 프로그램을 진행해 왔습니다."
-            },
-            {
-                id: "exp-2",
-                name: "박선영",
-                job: "임상심리사 1급 / EAP 코치",
-                topicCategory: "기업EAP/조직소통",
-                topicText: "기업 EAP / 임직원 힐링 코칭",
-                regionCategory: "전남 서부권",
-                regionText: "전남 서부권 (목포·나주·무안·영암 등)",
-                bio: "공공기관 및 기업 임직원 번아웃 예방 힐링 워크숍과 조직 코칭 전문가입니다."
-            }
-        ];
+        let initialExperts = generateVirtualExperts();
 
         let commCurrentPage = 1;
         const commPageSize = 10;
@@ -1548,7 +1299,9 @@
 
         let reqCurrentPage = 1;
         const reqPageSize = 9;
-        let reqCategoryFilter = 'ALL';
+
+        let expCurrentPage = 1;
+        const expPageSize = 9;
 
         let activeReqDetail = null;
         let activeExpertDetail = null;
@@ -1617,42 +1370,11 @@
                 if (targetPage === 'community') renderCommunityBoard();
             }
 
-            pageTriggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = trigger.getAttribute('data-page-target');
-                    navigateToPage(target);
-                });
-            });
-
-            // Timeline Filter
-            const historyFilterBtns = document.querySelectorAll('.history-filter-btn');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-
-            historyFilterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-
-                    historyFilterBtns.forEach(b => {
-                        b.className = "history-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-stone-100 text-slate-600 hover:bg-stone-200";
-                    });
-                    btn.className = "history-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-brand-600 text-white shadow-xs";
-
-                    timelineItems.forEach(item => {
-                        const year = item.getAttribute('data-year');
-                        if (filter === 'all' || year === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
             function animateCounters() {
                 const counters = document.querySelectorAll('.counter');
                 counters.forEach(counter => {
                     const target = +counter.getAttribute('data-target');
+                    if (!target) return;
                     const duration = 1600;
                     const stepTime = 20;
                     const steps = duration / stepTime;
@@ -1671,6 +1393,25 @@
                 });
             }
 
+            pageTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = trigger.getAttribute('data-page-target');
+                    navigateToPage(target);
+                });
+            });
+
+            // Enter key closes status modal
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const statusModal = document.getElementById('statusModal');
+                    if (statusModal && !statusModal.classList.contains('hidden')) {
+                        statusModal.classList.add('hidden');
+                    }
+                }
+            });
+
+            // Mobile Menu
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
@@ -1689,6 +1430,76 @@
                     }
                 });
             }
+
+            // Footer Modals
+            document.getElementById('openTermsBtn')?.addEventListener('click', () => document.getElementById('termsModal')?.classList.remove('hidden'));
+            document.getElementById('closeTermsModal')?.addEventListener('click', () => document.getElementById('termsModal')?.classList.add('hidden'));
+            document.getElementById('confirmTermsModal')?.addEventListener('click', () => document.getElementById('termsModal')?.classList.add('hidden'));
+
+            document.getElementById('openPrivacyBtn')?.addEventListener('click', () => document.getElementById('privacyModal')?.classList.remove('hidden'));
+            document.getElementById('closePrivacyModal')?.addEventListener('click', () => document.getElementById('privacyModal')?.classList.add('hidden'));
+            document.getElementById('confirmPrivacyModal')?.addEventListener('click', () => document.getElementById('privacyModal')?.classList.add('hidden'));
+
+            document.getElementById('openInquiryBtn')?.addEventListener('click', () => document.getElementById('inquiryModal')?.classList.remove('hidden'));
+            document.getElementById('closeInquiryModal')?.addEventListener('click', () => document.getElementById('inquiryModal')?.classList.add('hidden'));
+            document.getElementById('closeInquiryBtn')?.addEventListener('click', () => document.getElementById('inquiryModal')?.classList.add('hidden'));
+
+            // Apply/Register Modals
+            const applyModal = document.getElementById('applyModal');
+            document.querySelectorAll('.open-apply-btn').forEach(btn => {
+                btn.addEventListener('click', () => applyModal?.classList.remove('hidden'));
+            });
+            document.getElementById('closeApplyModal')?.addEventListener('click', () => applyModal?.classList.add('hidden'));
+            document.getElementById('openApplyFromLoginBtn')?.addEventListener('click', () => {
+                document.getElementById('loginModal')?.classList.add('hidden');
+                applyModal?.classList.remove('hidden');
+            });
+
+            document.getElementById('communityApplyForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('applyName').value.trim();
+                const username = document.getElementById('applyUsername').value.trim();
+                const password = document.getElementById('applyPassword').value.trim();
+                const email = document.getElementById('applyEmail').value.trim();
+
+                const newUser = { username, password, name, email, status: "APPROVED", job: "전문 상담사" };
+                userList.push(newUser);
+                localStorage.setItem('blink_users_v4', JSON.stringify(userList));
+                applyModal.classList.add('hidden');
+                document.getElementById('communityApplyForm').reset();
+                showStatusModal('가입 신청 완료', `${name} 선생님, 블링크 커뮤니티 가입이 완료되었습니다. 로그인해주세요!`, true);
+                document.getElementById('loginModal')?.classList.remove('hidden');
+            });
+
+            // Login Logic
+            const loginModal = document.getElementById('loginModal');
+            document.getElementById('openLoginBtn')?.addEventListener('click', () => loginModal?.classList.remove('hidden'));
+            document.getElementById('openLoginBtnMobile')?.addEventListener('click', () => loginModal?.classList.remove('hidden'));
+            document.getElementById('closeLoginModal')?.addEventListener('click', () => loginModal?.classList.add('hidden'));
+
+            document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const uInput = document.getElementById('loginUsername').value.trim();
+                const pInput = document.getElementById('loginPassword').value.trim();
+                const errorMsg = document.getElementById('loginErrorMsg');
+
+                const found = userList.find(u => u.username === uInput && u.password === pInput);
+
+                if (found) {
+                    currentUser = found;
+                    localStorage.setItem('blink_current_session', JSON.stringify(currentUser));
+                    if (errorMsg) errorMsg.classList.add('hidden');
+                    loginModal.classList.add('hidden');
+                    document.getElementById('loginForm').reset();
+                    updateAuthHeader();
+                    showStatusModal('로그인 성공', `${currentUser.name} 선생님, 환영합니다!`, true);
+                } else {
+                    if (errorMsg) {
+                        errorMsg.innerText = "아이디 또는 비밀번호가 일치하지 않습니다.";
+                        errorMsg.classList.remove('hidden');
+                    }
+                }
+            });
 
             function updateAuthHeader() {
                 const headerAuthArea = document.getElementById('headerAuthArea');
@@ -1719,7 +1530,53 @@
                 }
             }
 
-            // COMMUNITY BOARD LOGIC
+            // Write Community Post Logic (로그인한 회원만 글쓰기 허용)
+            const writePostModal = document.getElementById('writePostModal');
+            document.getElementById('openWritePostBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    showStatusModal('로그인 필요', '게시글 작성은 로그인 후 이용 가능합니다.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+                writePostModal?.classList.remove('hidden');
+            });
+            document.getElementById('closeWritePostModal')?.addEventListener('click', () => {
+                writePostModal?.classList.add('hidden');
+            });
+
+            document.getElementById('createPostForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!currentUser) {
+                    writePostModal?.classList.add('hidden');
+                    showStatusModal('로그인 필요', '로그인 세션이 만료되었습니다. 다시 로그인해주세요.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+
+                const cat = document.getElementById('writeCategory').value;
+                const title = document.getElementById('writeTitle').value.trim();
+                const body = document.getElementById('writeBody').value.trim();
+                const authorName = currentUser.name ? `${currentUser.name.charAt(0)}**` : '익명';
+
+                const newPost = {
+                    id: `post-${Date.now()}`,
+                    category: cat,
+                    title: title,
+                    body: body,
+                    author: authorName,
+                    date: '2026.10.28'
+                };
+
+                communityPosts.unshift(newPost);
+                localStorage.setItem('blink_posts_v12', JSON.stringify(communityPosts));
+                writePostModal?.classList.add('hidden');
+                document.getElementById('createPostForm').reset();
+                showStatusModal('작성 완료', '게시글이 성공적으로 등록되었습니다.', true);
+                commCurrentPage = 1;
+                renderCommunityBoard();
+            });
+
+            // Community Board Renderer (모든 사람이 자유롭게 클릭하여 게시글 열람 가능)
             function renderCommunityBoard() {
                 const container = document.getElementById('communityPostList');
                 if (!container) return;
@@ -1760,7 +1617,7 @@
                                 <div class="text-[10px] text-slate-400 font-en mt-0.5">${post.date}</div>
                             </div>
                             <div class="md:col-span-2 text-center">
-                                <span class="text-xs font-bold text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">1:1 대화</span>
+                                <span class="text-xs font-bold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3 py-1 rounded-full border border-brand-200 transition-colors cursor-pointer trigger-chat-btn">1:1 대화</span>
                             </div>
                         </div>
                     `).join('');
@@ -1772,7 +1629,13 @@
                 });
 
                 document.querySelectorAll('.post-row').forEach(row => {
-                    row.addEventListener('click', () => {
+                    row.addEventListener('click', (e) => {
+                        if (e.target.closest('.trigger-chat-btn')) {
+                            e.stopPropagation();
+                            handleChatRequest();
+                            return;
+                        }
+
                         const pid = row.getAttribute('data-post-id');
                         const p = communityPosts.find(item => item.id === pid);
                         if (p) {
@@ -1788,112 +1651,163 @@
                 });
             }
 
-            // REQUEST BOARD LOGIC
+            function handleChatRequest() {
+                if (!currentUser) {
+                    document.getElementById('postDetailModal')?.classList.add('hidden');
+                    showStatusModal('로그인 필요', '동료 상담사와의 1:1 비공개 대화 요청은 로그인 후 이용 가능합니다.', false);
+                    document.getElementById('loginModal')?.classList.remove('hidden');
+                    return;
+                }
+                document.getElementById('postDetailModal')?.classList.add('hidden');
+                showStatusModal('1:1 대화 요청 완료', '선생님께 1:1 비공개 대화 요청 알림이 전송되었습니다.', true);
+            }
+
+            document.getElementById('triggerChatRequestBtn')?.addEventListener('click', handleChatRequest);
+            document.getElementById('closePostDetailModal')?.addEventListener('click', () => document.getElementById('postDetailModal').classList.add('hidden'));
+            document.getElementById('closePostDetailBtn')?.addEventListener('click', () => document.getElementById('postDetailModal').classList.add('hidden'));
+
+            // Experts Directory Renderer
+            function renderExpertGrid() {
+                const container = document.getElementById('expertGridContainer');
+                if (!container) return;
+
+                const topicVal = document.getElementById('expertTopicFilter')?.value || 'ALL';
+                const regionVal = document.getElementById('expertRegionFilter')?.value || 'ALL';
+                const searchVal = (document.getElementById('expertSearchInput')?.value || '').trim().toLowerCase();
+
+                const filtered = initialExperts.filter(exp => {
+                    const matchTopic = (topicVal === 'ALL') || exp.topicCategory === topicVal;
+                    const matchRegion = (regionVal === 'ALL') || exp.regionCategory === regionVal;
+                    const matchSearch = !searchVal || exp.name.toLowerCase().includes(searchVal) || exp.topicText.toLowerCase().includes(searchVal);
+                    return matchTopic && matchRegion && matchSearch;
+                });
+
+                const total = filtered.length;
+                const totalPages = Math.ceil(total / expPageSize) || 1;
+                if (expCurrentPage > totalPages) expCurrentPage = totalPages;
+                if (expCurrentPage < 1) expCurrentPage = 1;
+
+                const start = (expCurrentPage - 1) * expPageSize;
+                const pageExperts = filtered.slice(start, start + expPageSize);
+
+                document.getElementById('totalExpertsCount').innerText = total.toLocaleString();
+                document.getElementById('currentExpRange').innerText = total === 0 ? '0' : `${start + 1} - ${Math.min(start + expPageSize, total)}`;
+
+                if (pageExperts.length === 0) {
+                    container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm bg-warm-50 rounded-2xl border border-dashed border-slate-200">검색 조건에 일치하는 전문가 프로필이 없습니다.</div>`;
+                    renderPaginationControls('expPaginationButtons', 1, 1, () => {});
+                    return;
+                }
+
+                container.innerHTML = pageExperts.map(exp => `
+                    <div class="bg-white rounded-2xl p-6 border border-stone-200/90 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-500 text-white font-bold text-lg flex items-center justify-center shrink-0 shadow-md">
+                                    ${exp.name.charAt(0)}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-base">${exp.name} 선생님</h3>
+                                    <p class="text-xs text-brand-600 font-semibold mt-0.5">${exp.job}</p>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4 border border-slate-100">
+                                <div><strong class="text-slate-800">전문 분야:</strong> ${exp.topicText}</div>
+                                <div><strong class="text-slate-800">활동 지역:</strong> ${exp.regionText}</div>
+                            </div>
+                            <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">${exp.bio}</p>
+                        </div>
+                        <button data-exp-id="${exp.id}" class="open-exp-detail-btn w-full py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-xs border border-brand-200 transition-colors flex items-center justify-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                            <span>선생님께 1:1 섭외 대화 신청</span>
+                        </button>
+                    </div>
+                `).join('');
+
+                renderPaginationControls('expPaginationButtons', totalPages, expCurrentPage, (p) => {
+                    expCurrentPage = p;
+                    renderExpertGrid();
+                });
+
+                document.querySelectorAll('.open-exp-detail-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const eid = btn.getAttribute('data-exp-id');
+                        const exp = initialExperts.find(e => e.id === eid);
+                        if (!exp) return;
+                        activeExpertDetail = exp;
+                        document.getElementById('expModalAvatar').innerText = exp.name.charAt(0);
+                        document.getElementById('expModalName').innerText = `${exp.name} 선생님`;
+                        document.getElementById('expModalJob').innerText = exp.job;
+                        document.getElementById('expModalTopic').innerText = exp.topicText;
+                        document.getElementById('expModalRegion').innerText = exp.regionText;
+                        document.getElementById('expModalBio').innerText = exp.bio;
+                        document.getElementById('expertDetailModal').classList.remove('hidden');
+                    });
+                });
+            }
+
+            document.getElementById('closeExpertDetailModal')?.addEventListener('click', () => document.getElementById('expertDetailModal').classList.add('hidden'));
+            document.getElementById('expContactTriggerBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    document.getElementById('expertDetailModal').classList.add('hidden');
+                    showStatusModal('로그인 필요', '1:1 섭외 대화 신청은 로그인 후 이용 가능합니다.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+                document.getElementById('expertDetailModal').classList.add('hidden');
+                showStatusModal('1:1 섭외 대화 신청 완료', `${activeExpertDetail?.name} 선생님께 비공개 섭외 문의가 전송되었습니다.`, true);
+            });
+
+            // Request Board Renderer
             function renderRequestBoard() {
                 const container = document.getElementById('requestPostContainer');
                 if (!container) return;
 
-                const filtered = requestList.filter(item => {
-                    return reqCategoryFilter === 'ALL' || item.category === reqCategoryFilter;
-                });
-
-                const total = filtered.length;
+                const total = requestList.length;
                 const totalPages = Math.ceil(total / reqPageSize) || 1;
                 if (reqCurrentPage > totalPages) reqCurrentPage = totalPages;
                 if (reqCurrentPage < 1) reqCurrentPage = 1;
 
                 const start = (reqCurrentPage - 1) * reqPageSize;
-                const pageItems = filtered.slice(start, start + reqPageSize);
+                const pageItems = requestList.slice(start, start + reqPageSize);
 
                 document.getElementById('totalRequestsCount').innerText = total.toLocaleString();
                 document.getElementById('currentReqRange').innerText = total === 0 ? '0' : `${start + 1} - ${Math.min(start + reqPageSize, total)}`;
 
-                if (pageItems.length === 0) {
-                    container.innerHTML = `
-                        <div class="col-span-full py-12 text-center text-slate-400 text-sm bg-warm-50 rounded-2xl border border-dashed border-slate-200">
-                            해당 유형의 등록된 섭외 요청이 없습니다.
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = pageItems.map(item => {
-                        if (item.isFeatured) {
-                            const ddayInfo = calculateDDay();
-                            const isClosed = ddayInfo.isClosed;
-                            const badgeBg = isClosed ? 'bg-slate-500' : 'bg-emerald-600 animate-pulse';
-
-                            return `
-                            <div class="bg-gradient-to-br from-lime-50 via-emerald-50/60 to-lime-100/40 rounded-2xl p-5 border-2 border-lime-400 shadow-md hover:shadow-lg hover:border-lime-500 transition-all flex flex-col justify-between group cursor-pointer req-item-card relative overflow-hidden" data-req-id="${item.id}">
-                                <div class="absolute -right-6 -top-6 w-20 h-20 bg-lime-400/20 rounded-full blur-xl pointer-events-none"></div>
-                                <div>
-                                    <div class="flex items-center justify-between mb-3">
-                                        <div class="flex items-center gap-1.5">
-                                            <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-lime-600 text-white shadow-xs">
-                                                [추천/공지]
-                                            </span>
-                                            <span class="px-2 py-1 rounded-lg text-xs font-bold bg-lime-200/80 text-lime-900 border border-lime-300">
-                                                ${item.category}
-                                            </span>
-                                        </div>
-                                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${badgeBg} text-white shadow-xs">
-                                            ${ddayInfo.text}
-                                        </span>
-                                    </div>
-                                    <h3 class="font-extrabold text-slate-900 group-hover:text-lime-700 transition-colors text-base leading-snug mb-2">
-                                        ${item.title}
-                                    </h3>
-                                    <p class="text-xs font-bold text-lime-800 mb-3 flex items-center gap-1">
-                                        <svg class="w-3.5 h-3.5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                                        ${item.org}
-                                    </p>
-                                    
-                                    <div class="space-y-1.5 text-xs text-slate-700 bg-white/80 p-3 rounded-xl mb-4 border border-lime-200/80 shadow-xs">
-                                        <div class="flex items-center gap-1.5"><span class="text-lime-800 font-bold shrink-0">📍 일시:</span> <span class="font-bold text-slate-900">${item.dateTime}</span></div>
-                                        <div class="flex items-center gap-1.5"><span class="text-lime-800 font-bold shrink-0">🔑 키워드:</span> <span class="font-bold text-emerald-700">책, 여행, 팝업스토어 (북트레블러)</span></div>
-                                        <div class="flex items-center gap-1.5"><span class="text-lime-800 font-bold shrink-0">⏳ 마감기한:</span> <span class="font-bold text-rose-600">2026년 11월 4일까지</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="pt-3 border-t border-lime-200/80 flex items-center justify-between text-xs">
-                                    <span class="text-slate-500 font-en font-medium">${item.date}</span>
-                                    <span class="text-lime-700 font-extrabold group-hover:underline inline-flex items-center gap-1">
-                                        공고 상세 보기 &rarr;
-                                    </span>
-                                </div>
-                            </div>
-                            `;
-                        }
-
+                container.innerHTML = pageItems.map(item => {
+                    if (item.isFeatured) {
+                        const ddayInfo = calculateDDay();
                         return `
-                        <div class="bg-white rounded-2xl p-5 border border-stone-200/90 shadow-xs hover:shadow-md hover:border-brand-300 transition-all flex flex-col justify-between group cursor-pointer req-item-card" data-req-id="${item.id}">
+                        <div class="bg-gradient-to-br from-lime-50 via-emerald-50/60 to-lime-100/40 rounded-2xl p-5 border-2 border-lime-400 shadow-md hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer req-item-card relative" data-req-id="${item.id}">
                             <div>
                                 <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200">
-                                        [${item.category}]
-                                    </span>
-                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${item.status === '모집중' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-500'}">
-                                        ${item.status}
-                                    </span>
+                                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-lime-600 text-white">[추천/공지]</span>
+                                    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">${ddayInfo.text}</span>
                                 </div>
-                                <h3 class="font-bold text-slate-900 group-hover:text-brand-600 transition-colors text-base leading-snug mb-2 line-clamp-2">
-                                    ${item.title}
-                                </h3>
-                                <p class="text-xs font-semibold text-brand-700 mb-3">${item.org}</p>
-                                
-                                <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
-                                    <div class="flex items-center gap-1.5"><span class="text-slate-400 shrink-0">일시/장소:</span> <span class="truncate font-medium text-slate-800">${item.dateTime}</span></div>
-                                    <div class="flex items-center gap-1.5"><span class="text-slate-400 shrink-0">수당/강사료:</span> <span class="font-bold text-emerald-700">상의 후 결정</span></div>
-                                </div>
+                                <h3 class="font-extrabold text-slate-900 group-hover:text-lime-700 transition-colors text-base mb-2">${item.title}</h3>
+                                <p class="text-xs font-bold text-lime-800 mb-3">${item.org}</p>
                             </div>
-
-                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <span class="text-slate-400 font-en">${item.date}</span>
-                                <span class="text-brand-600 font-bold group-hover:underline inline-flex items-center gap-1">
-                                    상세 조건 확인 &rarr;
-                                </span>
+                            <div class="pt-3 border-t border-lime-200 flex items-center justify-between text-xs">
+                                <span class="text-slate-500 font-en">${item.date}</span>
+                                <span class="text-lime-700 font-extrabold group-hover:underline">공고 상세 보기 &rarr;</span>
                             </div>
                         </div>
-                    `}).join('');
-                }
+                        `;
+                    }
+                    return `
+                    <div class="bg-white rounded-2xl p-5 border border-stone-200/90 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group cursor-pointer req-item-card" data-req-id="${item.id}">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200">[${item.category}]</span>
+                            <h3 class="font-bold text-slate-900 group-hover:text-brand-600 transition-colors text-base my-2 line-clamp-2">${item.title}</h3>
+                            <p class="text-xs font-semibold text-brand-700 mb-3">${item.org}</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-en">${item.date}</span>
+                            <span class="text-brand-600 font-bold group-hover:underline">상세 조건 확인 &rarr;</span>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
 
                 renderPaginationControls('reqPaginationButtons', totalPages, reqCurrentPage, (p) => {
                     reqCurrentPage = p;
@@ -1903,10 +1817,34 @@
                 document.querySelectorAll('.req-item-card').forEach(card => {
                     card.addEventListener('click', () => {
                         const rid = card.getAttribute('data-req-id');
-                        openRequestDetail(rid);
+                        const item = requestList.find(r => r.id === rid);
+                        if (!item) return;
+                        activeReqDetail = item;
+                        document.getElementById('reqDetailBadge').innerText = `[${item.category}]`;
+                        document.getElementById('reqDetailBadge').className = "inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 bg-brand-100 text-brand-800";
+                        document.getElementById('reqDetailTitle').innerText = item.title;
+                        document.getElementById('reqDetailOrg').innerText = `요청 기관: ${item.org}`;
+                        document.getElementById('reqDetailDateTime').innerText = item.dateTime;
+                        document.getElementById('reqDetailTarget').innerText = item.target || "상세 협의";
+                        document.getElementById('reqDetailFee').innerText = "상의 후 결정";
+                        document.getElementById('reqDetailQual').innerText = item.qual || "자격 조건 문의";
+                        document.getElementById('reqDetailBody').innerText = item.body;
+                        document.getElementById('requestDetailModal').classList.remove('hidden');
                     });
                 });
             }
+
+            document.getElementById('closeReqDetailModal')?.addEventListener('click', () => document.getElementById('requestDetailModal').classList.add('hidden'));
+            document.getElementById('closeReqDetailBtn')?.addEventListener('click', () => document.getElementById('requestDetailModal').classList.add('hidden'));
+            document.getElementById('applyForReqBtn')?.addEventListener('click', () => {
+                document.getElementById('requestDetailModal').classList.add('hidden');
+                if (!currentUser) {
+                    showStatusModal('로그인 필요', '강연 및 섭외 요청 문의하기는 로그인 후 이용하실 수 있습니다.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+                showStatusModal('섭외 문의 접수', `'${activeReqDetail?.title}' 공고에 대한 담당자 문의 메시지가 전송되었습니다.`, true);
+            });
 
             function renderPaginationControls(containerId, totalPages, currentPage, onPageClick) {
                 const btnContainer = document.getElementById(containerId);
@@ -1918,7 +1856,6 @@
                 const endPage = Math.min(startPage + chunkSize - 1, totalPages);
 
                 let html = '';
-
                 if (currentChunk > 0) {
                     html += `<button data-p="1" class="page-goto-btn px-2 py-1 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs font-bold">&laquo; 처음</button>`;
                 }
@@ -1950,37 +1887,6 @@
                     });
                 });
             }
-
-            function openRequestDetail(reqId) {
-                const item = requestList.find(r => r.id === reqId);
-                if (!item) return;
-                activeReqDetail = item;
-
-                document.getElementById('reqDetailBadge').innerText = `[${item.category}]`;
-                document.getElementById('reqDetailBadge').className = `inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 bg-brand-100 text-brand-800`;
-                document.getElementById('reqDetailTitle').innerText = item.title;
-                document.getElementById('reqDetailOrg').innerText = `요청 기관: ${item.org}`;
-                document.getElementById('reqDetailDateTime').innerText = item.dateTime;
-                document.getElementById('reqDetailTarget').innerText = item.target || "상세 협의";
-                document.getElementById('reqDetailFee').innerText = "상의 후 결정";
-                document.getElementById('reqDetailQual').innerText = item.qual || "자격 조건 문의";
-                document.getElementById('reqDetailBody').innerText = item.body;
-
-                document.getElementById('requestDetailModal').classList.remove('hidden');
-            }
-
-            document.getElementById('closeReqDetailModal')?.addEventListener('click', () => {
-                document.getElementById('requestDetailModal').classList.add('hidden');
-            });
-
-            document.getElementById('closeReqDetailBtn')?.addEventListener('click', () => {
-                document.getElementById('requestDetailModal').classList.add('hidden');
-            });
-
-            document.getElementById('applyForReqBtn')?.addEventListener('click', () => {
-                document.getElementById('requestDetailModal').classList.add('hidden');
-                showStatusModal('섭외 지원/문의 접수', `'${activeReqDetail?.title}' 공고에 대한 지원 및 담당자 문의 메시지가 전송되었습니다.`, true);
-            });
 
             function showStatusModal(title, message, isSuccess = true) {
                 document.getElementById('statusTitle').innerText = title;
