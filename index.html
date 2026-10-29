@@ -780,6 +780,78 @@
         </div>
     </div>
 
+    <!-- Modal: Write Lecture/Request Modal -->
+    <div id="writeRequestModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100">
+            <button id="closeWriteReqModal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="mb-5">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 font-bold text-xs mb-1">섭외 요청 공고 등록</span>
+                <h2 class="text-xl font-bold text-slate-900">전문가 섭외/강연 요청서 작성</h2>
+            </div>
+
+            <form id="createRequestForm" class="space-y-3.5 text-xs sm:text-sm">
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-800">요청 카테고리 <span class="text-rose-500">*</span></label>
+                    <select id="writeReqCategory" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-brand-500 outline-none bg-white text-xs">
+                        <option value="마음 특강·강연">마음 특강·강연</option>
+                        <option value="힐링 워크숍·체험">힐링 워크숍·체험</option>
+                        <option value="소그룹·집단상담">소그룹·집단상담</option>
+                        <option value="1:1 개인상담 파견">1:1 개인상담 파견</option>
+                        <option value="축제·행사 마음부스">축제·행사 마음부스</option>
+                        <option value="사례 자문·슈퍼비전">사례 자문·슈퍼비전</option>
+                        <option value="긴급 위기 지원">긴급 위기 지원</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-800">행사명 / 주제 <span class="text-rose-500">*</span></label>
+                    <input type="text" id="writeReqTitle" required placeholder="예: 2026 청소년 마음건강 특강 강사 모심" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-brand-500 outline-none text-xs">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-800">요청 기관 <span class="text-rose-500">*</span></label>
+                        <input type="text" id="writeReqOrg" required placeholder="예: OO구 청소년상담복지센터" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-800">일시 및 장소 <span class="text-rose-500">*</span></label>
+                        <input type="text" id="writeReqDateTime" required placeholder="예: 2026.11.15(목) / 광주 서구" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-800">대상 및 인원</label>
+                        <input type="text" id="writeReqTarget" placeholder="예: 관내 중학생 30명" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-800">강사료 / 수당</label>
+                        <input type="text" id="writeReqFee" value="상의 후 결정" readonly class="w-full px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 outline-none text-xs font-bold">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-800">필요 자격 조건</label>
+                    <input type="text" id="writeReqQual" placeholder="예: 청소년상담사 2급 이상 / 심리상담 2급 우대" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs">
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-800">상세 요청 내용 <span class="text-rose-500">*</span></label>
+                    <textarea id="writeReqBody" rows="4" required placeholder="세부 강연 내용 및 요청 조건을 작성해주세요." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 outline-none text-xs resize-none"></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 shadow-md shadow-brand-600/20 text-sm">
+                        섭외 요청 공고 등록하기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal: Write Community Post Modal -->
     <div id="writePostModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-slate-100">
@@ -984,7 +1056,18 @@
 
             <div class="overflow-y-auto pr-2 space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-b border-slate-100 py-4 my-2">
                 <h3 class="font-bold text-slate-900 text-sm">제 1 조 (목적)</h3>
-                <p>본 약관은 Blink 커뮤니티가 제공하는 서비스의 이용조건 및 절차를 규정합니다.</p>
+                <p>본 약관은 Blink 커뮤니티(이하 "커뮤니티")가 제공하는 전문 심리상담사 및 관련 전문가 교류 서비스의 이용조건 및 절차, 회원과 커뮤니티 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+                <h3 class="font-bold text-slate-900 text-sm">제 2 조 (회원 자격 및 승인)</h3>
+                <p>1. 본 커뮤니티는 전문 심리상담사, 임상심리사, 상담전공 수련생 등 전문 자격을 보유하거나 이에 준하는 전문가를 대상으로 합니다.<br>
+                2. 서비스 참여 신청 후 운영자의 최종 승인 절차를 거쳐 이용 권한이 부여됩니다.</p>
+
+                <h3 class="font-bold text-slate-900 text-sm">제 3 조 (비밀유지 및 내담자 정보 보호)</h3>
+                <p>1. 회원은 사례 연구 및 커뮤니티 소통 중 내담자의 개인식별정보가 노출되지 않도록 엄격히 가명화 및 익명화해야 합니다.<br>
+                2. 커뮤니티 내부에서 교류된 동료 상담사의 정보 및 비공개 수퍼비전 내용을 외부로 유출하는 것은 금지됩니다.</p>
+
+                <h3 class="font-bold text-slate-900 text-sm">제 4 조 (게시물 관리 및 이용 제한)</h3>
+                <p>상호 존중과 전문성을 해치는 비방, 허위사실 유포, 무단 상업적 광고 게시글은 운영자에 의해 사전 통보 없이 삭제되거나 회원 자격이 제한될 수 있습니다.</p>
             </div>
 
             <div class="pt-3 text-right">
@@ -1008,8 +1091,14 @@
             </div>
 
             <div class="overflow-y-auto pr-2 space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-b border-slate-100 py-4 my-2">
-                <h3 class="font-bold text-slate-900 text-sm">1. 수집 항목 및 목적</h3>
-                <p>커뮤니티는 서비스 제공을 위해 이름, 아이디, 자격사항 등을 수집합니다.</p>
+                <h3 class="font-bold text-slate-900 text-sm">1. 개인정보의 수집 항목 및 목적</h3>
+                <p>커뮤니티는 전문가 자격 인증 및 서비스 제공을 위해 이름, 생년월일, 연락처, 이메일, 자격증, 직업/직책 정보를 수집합니다.</p>
+
+                <h3 class="font-bold text-slate-900 text-sm">2. 개인정보의 보유 및 이용 기간</h3>
+                <p>회원 탈퇴 요청 시까지 보관되며, 탈퇴 시 지체 없이 파기됩니다. 단, 관련 법령의 규정에 의하여 보존할 필요가 있는 경우 일정 기간 보관합니다.</p>
+
+                <h3 class="font-bold text-slate-900 text-sm">3. 제3자 제공 및 위탁</h3>
+                <p>수집된 개인정보는 동의 없이 외부에 제공되거나 위탁되지 않습니다.</p>
             </div>
 
             <div class="pt-3 text-right">
@@ -1094,7 +1183,7 @@
 
     <!-- Application Script -->
     <script type="module">
-        // Default seed datasets
+        // Seed user accounts
         const defaultUsers = [
             { username: "test", password: "1234", name: "김선생", email: "test@blink.kr", status: "APPROVED", job: "전문 심리상담사", certs: ["한국상담학회 전문상담사"] },
             { username: "director", password: "1234", name: "박센터장", email: "director@blink.kr", status: "APPROVED", job: "상담센터 센터장/운영자", certs: ["한국상담심리학회 상담심리사 1급"] },
@@ -1102,7 +1191,7 @@
             { username: "trainee", password: "1234", name: "최수련", email: "trainee@blink.kr", status: "APPROVED", job: "수련생/대학원생", certs: ["청소년상담사"] }
         ];
 
-        // Generator for 45 Virtual Expert Profiles
+        // Generator for 45 Virtual Expert Profiles across 5 pages
         function generateVirtualExperts() {
             const familyNames = ["김", "박", "이", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍", "전", "고", "문", "양", "손"];
             const givenLastNames = ["재", "영", "훈", "진", "우", "현", "연", "은", "아", "희", "성", "경", "민", "수", "주", "혁", "원", "하", "림", "호", "준"];
@@ -1198,29 +1287,18 @@
                 ddayText: ddayStatus.text
             };
 
-            const standardTopics = [
-                {
-                    cat: "마음 특강·강연",
-                    title: "청소년 마음건강 및 자아존중감 향상 특강 강사 초빙",
-                    org: "광주 서구 청소년상담복지센터",
-                    target: "관내 중·고등학생 40명",
-                    qual: "청소년상담사 2급 이상 / 전문상담사 2급 이상",
-                    body: "청소년기의 학업 스트레스 및 자아정체성 확립을 돕기 위한 마음건강 특강입니다."
-                }
-            ];
-
             const requests = [featuredPost];
             for (let i = 0; i < 40; i++) {
                 requests.push({
                     id: `req-${i + 1}`,
-                    category: standardTopics[0].cat,
-                    title: standardTopics[0].title,
-                    org: standardTopics[0].org,
+                    category: "마음 특강·강연",
+                    title: "청소년 마음건강 및 자아존중감 향상 특강 강사 초빙",
+                    org: "광주 서구 청소년상담복지센터",
                     dateTime: "2026.11.15 / 전남·광주 현장",
-                    target: standardTopics[0].target,
+                    target: "관내 중·고등학생 40명",
                     fee: "상의 후 결정",
-                    qual: standardTopics[0].qual,
-                    body: standardTopics[0].body,
+                    qual: "청소년상담사 2급 이상 / 전문상담사 2급 이상",
+                    body: "청소년기의 학업 스트레스 및 자아정체성 확립을 돕기 위한 마음건강 특강입니다.",
                     status: "모집중",
                     date: "2026.10.25"
                 });
@@ -1229,27 +1307,17 @@
         }
 
         function generatePostsDataset() {
-            const detailedTopics = [
-                {
-                    cat: "현장고민",
-                    title: "비자발적으로 방문한 아동청소년 내담자 초기 라포 형성 노하우 공유해주실 분 계신가요?",
-                    body: "부모님의 강요로 센터에 오게 된 중학교 2학년 내담자입니다.\n초기 2회기 동안 침묵으로 일관하거나 '모르겠어요'로만 응답하고 있는데, 매체 활용 전략이나 대화법 노하우가 궁금합니다."
-                },
-                {
-                    cat: "질의응답",
-                    title: "공공기관 연계 상담 시 개인정보 및 동의서 간소화 서식 양식 공유 가능할까요?",
-                    body: "지자체 연계 사업으로 위탁 상담을 진행 중인데, 초기 수속 서류가 너무 복잡하여 간소화된 서식을 공유받고 싶습니다."
-                }
-            ];
-
             const posts = [];
             for (let i = 0; i < 30; i++) {
-                const topic = detailedTopics[i % detailedTopics.length];
                 posts.push({
                     id: `post-${i + 1}`,
-                    category: topic.cat,
-                    title: topic.title,
-                    body: topic.body,
+                    category: i % 2 === 0 ? "현장고민" : "질의응답",
+                    title: i % 2 === 0 
+                        ? "비자발적으로 방문한 아동청소년 내담자 초기 라포 형성 노하우 공유해주실 분 계신가요?"
+                        : "공공기관 연계 상담 시 개인정보 및 동의서 간소화 서식 양식 공유 가능할까요?",
+                    body: i % 2 === 0
+                        ? "부모님의 강요로 센터에 오게 된 중학교 2학년 내담자입니다.\n초기 2회기 동안 침묵으로 일관하거나 '모르겠어요'로만 응답하고 있는데, 매체 활용 전략이나 대화법 노하우가 궁금합니다."
+                        : "지자체 연계 사업으로 위탁 상담을 진행 중인데, 초기 수속 서류가 너무 복잡하여 간소화된 서식을 공유받고 싶습니다.",
                     author: `김**`,
                     date: `2026.10.28`
                 });
@@ -1401,7 +1469,7 @@
                 });
             });
 
-            // Enter key closes status modal
+            // Enter key modal dismissal
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     const statusModal = document.getElementById('statusModal');
@@ -1411,7 +1479,7 @@
                 }
             });
 
-            // Mobile Menu
+            // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
@@ -1444,7 +1512,7 @@
             document.getElementById('closeInquiryModal')?.addEventListener('click', () => document.getElementById('inquiryModal')?.classList.add('hidden'));
             document.getElementById('closeInquiryBtn')?.addEventListener('click', () => document.getElementById('inquiryModal')?.classList.add('hidden'));
 
-            // Apply/Register Modals
+            // Community apply modals
             const applyModal = document.getElementById('applyModal');
             document.querySelectorAll('.open-apply-btn').forEach(btn => {
                 btn.addEventListener('click', () => applyModal?.classList.remove('hidden'));
@@ -1471,7 +1539,7 @@
                 document.getElementById('loginModal')?.classList.remove('hidden');
             });
 
-            // Login Logic
+            // Login Modal & Auth
             const loginModal = document.getElementById('loginModal');
             document.getElementById('openLoginBtn')?.addEventListener('click', () => loginModal?.classList.remove('hidden'));
             document.getElementById('openLoginBtnMobile')?.addEventListener('click', () => loginModal?.classList.remove('hidden'));
@@ -1530,7 +1598,7 @@
                 }
             }
 
-            // Write Community Post Logic (로그인한 회원만 글쓰기 허용)
+            // Write Community Post
             const writePostModal = document.getElementById('writePostModal');
             document.getElementById('openWritePostBtn')?.addEventListener('click', () => {
                 if (!currentUser) {
@@ -1576,7 +1644,62 @@
                 renderCommunityBoard();
             });
 
-            // Community Board Renderer (모든 사람이 자유롭게 클릭하여 게시글 열람 가능)
+            // Write Request / Lecture Notice
+            const writeRequestModal = document.getElementById('writeRequestModal');
+            document.getElementById('openWriteRequestBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    showStatusModal('로그인 필요', '섭외 및 강연 요청서 작성은 로그인 후 이용하실 수 있습니다.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+                writeRequestModal?.classList.remove('hidden');
+            });
+            document.getElementById('closeWriteReqModal')?.addEventListener('click', () => {
+                writeRequestModal?.classList.add('hidden');
+            });
+
+            document.getElementById('createRequestForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!currentUser) {
+                    writeRequestModal?.classList.add('hidden');
+                    showStatusModal('로그인 필요', '로그인 세션이 만료되었습니다. 로그인 후 등록해주세요.', false);
+                    loginModal?.classList.remove('hidden');
+                    return;
+                }
+
+                const cat = document.getElementById('writeReqCategory').value;
+                const title = document.getElementById('writeReqTitle').value.trim();
+                const org = document.getElementById('writeReqOrg').value.trim();
+                const dateTime = document.getElementById('writeReqDateTime').value.trim();
+                const target = document.getElementById('writeReqTarget').value.trim();
+                const fee = document.getElementById('writeReqFee').value;
+                const qual = document.getElementById('writeReqQual').value.trim();
+                const body = document.getElementById('writeReqBody').value.trim();
+
+                const newReq = {
+                    id: `req-${Date.now()}`,
+                    category: cat,
+                    title: title,
+                    org: org,
+                    dateTime: dateTime,
+                    target: target,
+                    fee: fee,
+                    qual: qual,
+                    body: body,
+                    status: "모집중",
+                    date: "2026.10.28"
+                };
+
+                requestList.unshift(newReq);
+                localStorage.setItem('blink_requests_v12', JSON.stringify(requestList));
+                writeRequestModal?.classList.add('hidden');
+                document.getElementById('createRequestForm').reset();
+                showStatusModal('등록 완료', '전문가 섭외/강연 요청 공고가 성공적으로 등록되었습니다.', true);
+                reqCurrentPage = 1;
+                renderRequestBoard();
+            });
+
+            // Render Community Board
             function renderCommunityBoard() {
                 const container = document.getElementById('communityPostList');
                 if (!container) return;
@@ -1666,7 +1789,7 @@
             document.getElementById('closePostDetailModal')?.addEventListener('click', () => document.getElementById('postDetailModal').classList.add('hidden'));
             document.getElementById('closePostDetailBtn')?.addEventListener('click', () => document.getElementById('postDetailModal').classList.add('hidden'));
 
-            // Experts Directory Renderer
+            // Render Experts Directory
             function renderExpertGrid() {
                 const container = document.getElementById('expertGridContainer');
                 if (!container) return;
@@ -1758,7 +1881,7 @@
                 showStatusModal('1:1 섭외 대화 신청 완료', `${activeExpertDetail?.name} 선생님께 비공개 섭외 문의가 전송되었습니다.`, true);
             });
 
-            // Request Board Renderer
+            // Render Request Board
             function renderRequestBoard() {
                 const container = document.getElementById('requestPostContainer');
                 if (!container) return;
