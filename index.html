@@ -1469,6 +1469,30 @@
                 });
             });
 
+            // History Year Filter Handling
+            const historyFilterBtns = document.querySelectorAll('.history-filter-btn');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+
+            historyFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+
+                    historyFilterBtns.forEach(b => {
+                        b.className = "history-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-stone-100 text-slate-600 hover:bg-stone-200";
+                    });
+                    btn.className = "history-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-brand-600 text-white shadow-xs";
+
+                    timelineItems.forEach(item => {
+                        const year = item.getAttribute('data-year');
+                        if (filter === 'all' || year === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
             // Enter key modal dismissal
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -1530,12 +1554,28 @@
                 const password = document.getElementById('applyPassword').value.trim();
                 const email = document.getElementById('applyEmail').value.trim();
 
+                const existingUsers = getStoredUsers();
+                const userIndex = existingUsers.findIndex(u => u.username === username);
+
                 const newUser = { username, password, name, email, status: "APPROVED", job: "전문 상담사" };
-                userList.push(newUser);
+
+                if (userIndex >= 0) {
+                    existingUsers[userIndex] = newUser;
+                } else {
+                    existingUsers.push(newUser);
+                }
+
+                userList = existingUsers;
                 localStorage.setItem('blink_users_v4', JSON.stringify(userList));
+
                 applyModal.classList.add('hidden');
                 document.getElementById('communityApplyForm').reset();
-                showStatusModal('가입 신청 완료', `${name} 선생님, 블링크 커뮤니티 가입이 완료되었습니다. 로그인해주세요!`, true);
+                showStatusModal('가입 신청 완료', `${name} 선생님, 회원 정보 등록이 완료되었습니다. 생성하신 아이디로 로그인해보세요!`, true);
+                
+                // Pre-fill username field in login form for convenience
+                const loginUserField = document.getElementById('loginUsername');
+                if (loginUserField) loginUserField.value = username;
+
                 document.getElementById('loginModal')?.classList.remove('hidden');
             });
 
@@ -1551,6 +1591,8 @@
                 const pInput = document.getElementById('loginPassword').value.trim();
                 const errorMsg = document.getElementById('loginErrorMsg');
 
+                // Reload fresh user list from local storage
+                userList = getStoredUsers();
                 const found = userList.find(u => u.username === uInput && u.password === pInput);
 
                 if (found) {
