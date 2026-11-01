@@ -1304,11 +1304,11 @@
             ];
 
             const orgTemplates = [
-                "광주 서구 청소년상담복지센터", "전남 도청 산하 정신건강복지센터", "나주시 건강가정·다문화가족지원센터",
-                "광주 광산구 정신건강복지센터", "순천시 청소년문화의집", "목포시 종합사회복지관",
-                "여수시 건강증진센터", "전남대학교 학생생활상담센터", "조선대학교 인권센터",
-                "광주광역시 교육청 마음건강지원단", "광주 북구 육아종합지원센터", "광양시 가족센터",
-                "전남도립대학교 학생상담센터", "기업 EAP 운영사 (주)마음케어", "광주 동구 청년창업지원센터"
+                "(사)마음이음 청소년지원협회", "사단법인 마음숲 정신건강나눔회", "나눔과쉼 다문화가족지원회",
+                "(사)빛고을 마음돌봄협회", "순천 푸른숲 청소년문화나눔회", "(사)바다소리 지역복지나눔회",
+                "여수 햇살 건강증진협의회", "(사)청년마음쉼표 학생지원회", "(사)아름다운동행 인권나눔회",
+                "(사)마음건강 교육나눔협회", "(사)새싹돋움 육아나눔회", "광양 하늘빛 가족사랑회",
+                "(사)푸른청년 대학생멘토링협회", "(사)마음온 직장인힐링협회", "(사)청년도약 창업나눔협회"
             ];
 
             const titleTemplates = [
@@ -1428,7 +1428,7 @@
         }
 
         function getStoredRequests() {
-            const stored = localStorage.getItem('blink_requests_v12');
+            const stored = localStorage.getItem('blink_requests_v13');
             if (stored) {
                 try { 
                     const parsed = JSON.parse(stored);
@@ -1436,7 +1436,7 @@
                 } catch (e) {}
             }
             const generated = generateRequestsDataset();
-            localStorage.setItem('blink_requests_v12', JSON.stringify(generated));
+            localStorage.setItem('blink_requests_v13', JSON.stringify(generated));
             return generated;
         }
 
@@ -1841,7 +1841,7 @@
                 };
 
                 requestList.unshift(newReq);
-                localStorage.setItem('blink_requests_v12', JSON.stringify(requestList));
+                localStorage.setItem('blink_requests_v13', JSON.stringify(requestList));
                 writeRequestModal?.classList.add('hidden');
                 document.getElementById('createRequestForm').reset();
                 showStatusModal('등록 완료', '전문가 섭외/강연 요청 공고가 성공적으로 등록되었습니다.', true);
