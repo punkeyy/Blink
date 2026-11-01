@@ -1501,7 +1501,7 @@
 
             let animatedCountersDone = false;
 
-            function navigateToPage(targetPage) {
+            function navigateToPage(targetPage, opts = {}) {
                 if (!pageViews[targetPage]) targetPage = 'home';
 
                 Object.keys(pageViews).forEach(p => {
@@ -1534,7 +1534,12 @@
                     document.getElementById('menuCloseIcon')?.classList.add('hidden');
                 }
 
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (opts.scroll !== false) window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // 현재 페이지를 주소 해시에 기록 (새로고침 시 같은 페이지 유지)
+                if (opts.updateHash !== false && location.hash !== '#' + targetPage) {
+                    history.pushState(null, '', '#' + targetPage);
+                }
 
                 if (targetPage === 'history' && !animatedCountersDone) {
                     setTimeout(animateCounters, 150);
@@ -2206,6 +2211,18 @@
 
             renderCommunityBoard();
             renderRequestBoard();
+
+            // 새로고침 / 직접 접속 시 해시에 맞는 페이지 복원
+            const initialPage = location.hash.replace('#', '');
+            if (initialPage && initialPage !== 'home' && pageViews[initialPage]) {
+                navigateToPage(initialPage, { scroll: false, updateHash: false });
+            }
+
+            // 뒤로가기 / 앞으로가기 대응
+            window.addEventListener('hashchange', () => {
+                const page = location.hash.replace('#', '');
+                navigateToPage(pageViews[page] ? page : 'home', { updateHash: false });
+            });
         });
     </script>
 </body>
