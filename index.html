@@ -1217,10 +1217,17 @@
                 { cat: "슈퍼비전/사례자문", text: "사례 자문위원 / 수퍼비전 제공" }
             ];
 
+            // 다양화된 활동 가능 지역 세부 목록
             const regions = [
-                { cat: "광주광역시", text: "광주광역시 전체 (동구·서구·남구·북구·광산구)" },
-                { cat: "전남 서부권", text: "전남 서부권 (목포·나주·무안·영암 등)" },
-                { cat: "전남 동부권", text: "전남 동부권 (순천·여수·광양·구례 등)" }
+                { cat: "광주광역시", text: "광주광역시 전체 (서구·남구·북구·광산구·동구)" },
+                { cat: "광주광역시", text: "광주 서구·남구 및 화순 인근 지역" },
+                { cat: "광주광역시", text: "광주 북구·광산구 및 장성 인근 지역" },
+                { cat: "전남 서부권", text: "전남 서부권 (목포·나주·무안·영암·함평 등)" },
+                { cat: "전남 서부권", text: "전남 나주시·무안군 및 신안·해남권" },
+                { cat: "전남 서부권", text: "전남 목포시·영암군 및 강진·완도권" },
+                { cat: "전남 동부권", text: "전남 동부권 (순천·여수·광양·구례·고흥 등)" },
+                { cat: "전남 동부권", text: "전남 순천시·광양시 및 곡성·보성권" },
+                { cat: "전남 동부권", text: "전남 여수시·순천시 전역" }
             ];
 
             const bios = [
@@ -1271,6 +1278,7 @@
         function generateRequestsDataset() {
             const ddayStatus = calculateDDay();
 
+            // 1페이지 최상단 고정 공고 (페이지투어)
             const featuredPost = {
                 id: 'req-featured-book-traveler',
                 category: '축제·행사 마음부스',
@@ -1288,38 +1296,132 @@
             };
 
             const requests = [featuredPost];
-            for (let i = 0; i < 40; i++) {
+
+            // 10페이지 구성을 위한 다양한 기관 및 주제 데이터베이스 (총 90개 추가 -> 91개 -> 10페이지)
+            const categories = [
+                "마음 특강·강연", "힐링 워크숍·체험", "소그룹·집단상담",
+                "1:1 개인상담 파견", "축제·행사 마음부스", "사례 자문·슈퍼비전", "긴급 위기 지원"
+            ];
+
+            const orgTemplates = [
+                "광주 서구 청소년상담복지센터", "전남 도청 산하 정신건강복지센터", "나주시 건강가정·다문화가족지원센터",
+                "광주 광산구 정신건강복지센터", "순천시 청소년문화의집", "목포시 종합사회복지관",
+                "여수시 건강증진센터", "전남대학교 학생생활상담센터", "조선대학교 인권센터",
+                "광주광역시 교육청 마음건강지원단", "광주 북구 육아종합지원센터", "광양시 가족센터",
+                "전남도립대학교 학생상담센터", "기업 EAP 운영사 (주)마음케어", "광주 동구 청년창업지원센터"
+            ];
+
+            const titleTemplates = [
+                "청소년 마음건강 및 자아존중감 향상 특강 강사 모심",
+                "지자체 청년층 대상 번아웃 예방 힐링 워크숍 진행 전문가 섭외",
+                "다문화 가정 부모-자녀 정서 교감 집단상담 전문가 모집",
+                "기업 임직원 스트레스 관리 및 감정조절 특강 강사 요청",
+                "지역 사회복지관 독서 치료 및 마음케어 프로그램 진행자 모집",
+                "초·중등 교원 대상 감정코칭 및 청소년 심리 이해 강연",
+                "지역 청년 1:1 심리상담 파견 전문 상담사 모집",
+                "공공기관 직원 마음건강 정기 상담 파견 전문가 위촉",
+                "지역 문화 축제 '마음건강 힐링 부스' 상담 전문가 팀 모집",
+                "아동·청소년 전문 수퍼바이저 및 사례 자문위원 모심",
+                "위기 청소년 응급 심리 지원 및 긴급 개입 전문가 모집",
+                "노인 복지관 우울 예방 및 자아통합감 미술치료 집단 모집",
+                "취업 준비생 대상 TCI 심리검사 집단 해석 워크숍 섭외",
+                "대학생 감정케어 및 또래상담자 멘토링 특강 수석강사 섭외",
+                "가족관계 개선 및 소통 부모교육 전문강사 파견 요청"
+            ];
+
+            // 10월 31일부터 3월까지 최근 순서로 배치 (총 89개 생성)
+            const totalCount = 89;
+            const startDate = new Date(2026, 9, 31); // 10월 31일
+            const endDate = new Date(2026, 2, 1);    // 3월 1일
+            const timeRange = startDate.getTime() - endDate.getTime();
+
+            for (let i = 0; i < totalCount; i++) {
+                // 최근 날짜부터 서서히 과거 날짜로 배치
+                const timeOffset = (i / totalCount) * timeRange + (Math.random() * 86400000 * 0.5);
+                const itemDate = new Date(startDate.getTime() - timeOffset);
+                const month = String(itemDate.getMonth() + 1).padStart(2, '0');
+                const day = String(itemDate.getDate()).padStart(2, '0');
+                const dateStr = `2026.${month}.${day}`;
+
+                const cat = categories[i % categories.length];
+                const org = orgTemplates[i % orgTemplates.length];
+                const title = titleTemplates[i % titleTemplates.length];
+
                 requests.push({
                     id: `req-${i + 1}`,
-                    category: "마음 특강·강연",
-                    title: "청소년 마음건강 및 자아존중감 향상 특강 강사 초빙",
-                    org: "광주 서구 청소년상담복지센터",
-                    dateTime: "2026.11.15 / 전남·광주 현장",
-                    target: "관내 중·고등학생 40명",
+                    category: cat,
+                    title: title, // (숫자) 표기 제거
+                    org: org,
+                    dateTime: `2026.${month}.${Math.min(28, parseInt(day) + 2)} / 전남·광주 현장`,
+                    target: "관내 주민 및 대상자 30~50명",
                     fee: "상의 후 결정",
-                    qual: "청소년상담사 2급 이상 / 전문상담사 2급 이상",
-                    body: "청소년기의 학업 스트레스 및 자아정체성 확립을 돕기 위한 마음건강 특강입니다.",
-                    status: "모집중",
-                    date: "2026.10.25"
+                    qual: "관련 분야 자격증 보유자 / 심리상담사 2급 이상",
+                    body: `본 프로그램은 ${org}에서 주관하는 전문 마음건강 사업의 일환입니다.\n선생님들의 많은 관심과 지원 부탁드립니다.`,
+                    status: i < 15 ? "모집중" : "모집완료",
+                    date: dateStr
                 });
             }
+
             return requests;
         }
 
         function generatePostsDataset() {
             const posts = [];
-            for (let i = 0; i < 30; i++) {
+            const familyNames = ["김", "박", "이", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍", "전", "고", "문", "양", "손"];
+            
+            const titles = [
+                "비자발적으로 방문한 아동청소년 내담자 초기 라포 형성 노하우 공유해주실 분 계신가요?",
+                "공공기관 연계 상담 시 개인정보 및 동의서 간소화 서식 양식 공유 가능할까요?",
+                "TCI 검사 해석 시 프로파일 불일치 사례 다루는 수퍼비전 팁이 궁금합니다.",
+                "성인 경계선 지능 의심 내담자 초기 평가 시 검사 도구 추천 부탁드립니다.",
+                "프리랜서 상담사 종합소득세 신고 및 사업자 등록 관련 조언 부탁드립니다.",
+                "트라우마 사건 경험 내담자 안정화 기법 적용 시 고려해야 할 점",
+                "은둔형 외톨이 청년 상담 초기 개입 시 효과적인 대화 기법",
+                "부부상담 중 갈등이 격화되는 상황에서 중재 노하우가 있으신가요?",
+                "초심 상담사를 위한 수퍼비전 준비서 작성 양식 및 팁 공유",
+                "지역 내 소모임 스터디 그룹(DSM-5-TR 사례 개념화) 모집합니다.",
+                "학교현장 위기개입 시 교사와 학부모 간 소통 조율 노하우",
+                "미술 매체 활용 시 라포 형성에 유용한 서식이나 워크북 추천",
+                "사이버 상담 및 화상 상담 시 몰입도 유지 방안에 대하여",
+                "내담자의 저항이 심할 때 상담자 본인의 번아웃 관리 방법",
+                "다문화 가정 상담 시 언어 장벽 극복 및 매체 활용 사례"
+            ];
+
+            const bodies = [
+                "부모님의 강요로 센터에 오게 된 중학교 2학년 내담자입니다.\n초기 2회기 동안 침묵으로 일관하거나 '모르겠어요'로만 응답하고 있는데, 매체 활용 전략이나 대화법 노하우가 궁금합니다.",
+                "지자체 연계 사업으로 위탁 상담을 진행 중인데, 초기 수속 서류가 너무 복잡하여 간소화된 서식을 공유받고 싶습니다.",
+                "TCI 기질 및 성격검사 시 자율성과 연대감이 극단적으로 낮게 나올 때 내담자 반응 다루기 수월한 팁이 있을까요?",
+                "종합심리검사 실시 전 초기 면담 과정에서 경계선 지능 지표를 선별할 때 유용한 질문 구성이 궁금합니다.",
+                "올해부터 개인 센터와 외부 기관 출강을 병행하게 되었는데 세무 관련 참고자료나 노하우가 필요합니다."
+            ];
+
+            // 100개 게시글 생성 -> 페이지당 10개씩 정확히 10페이지 구성
+            const totalCount = 100;
+            const startDate = new Date(2026, 9, 31); // 10월 31일
+            const endDate = new Date(2026, 2, 1);    // 3월 1일
+            const timeRange = startDate.getTime() - endDate.getTime();
+
+            for (let i = 0; i < totalCount; i++) {
+                // 최근 순서로 배치
+                const timeOffset = (i / totalCount) * timeRange + (Math.random() * 86400000 * 0.3);
+                const itemDate = new Date(startDate.getTime() - timeOffset);
+                const month = String(itemDate.getMonth() + 1).padStart(2, '0');
+                const day = String(itemDate.getDate()).padStart(2, '0');
+                const dateStr = `2026.${month}.${day}`;
+
+                const fn = familyNames[i % familyNames.length];
+                const author = `${fn}**`;
+                const category = i % 2 === 0 ? "현장고민" : "질의응답";
+                const title = titles[i % titles.length];
+                const body = bodies[i % bodies.length];
+
                 posts.push({
                     id: `post-${i + 1}`,
-                    category: i % 2 === 0 ? "현장고민" : "질의응답",
-                    title: i % 2 === 0 
-                        ? "비자발적으로 방문한 아동청소년 내담자 초기 라포 형성 노하우 공유해주실 분 계신가요?"
-                        : "공공기관 연계 상담 시 개인정보 및 동의서 간소화 서식 양식 공유 가능할까요?",
-                    body: i % 2 === 0
-                        ? "부모님의 강요로 센터에 오게 된 중학교 2학년 내담자입니다.\n초기 2회기 동안 침묵으로 일관하거나 '모르겠어요'로만 응답하고 있는데, 매체 활용 전략이나 대화법 노하우가 궁금합니다."
-                        : "지자체 연계 사업으로 위탁 상담을 진행 중인데, 초기 수속 서류가 너무 복잡하여 간소화된 서식을 공유받고 싶습니다.",
-                    author: `김**`,
-                    date: `2026.10.28`
+                    category: category,
+                    title: title,
+                    body: body,
+                    author: author,
+                    date: dateStr
                 });
             }
             return posts;
@@ -1328,7 +1430,10 @@
         function getStoredRequests() {
             const stored = localStorage.getItem('blink_requests_v12');
             if (stored) {
-                try { return JSON.parse(stored); } catch (e) {}
+                try { 
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length >= 80) return parsed;
+                } catch (e) {}
             }
             const generated = generateRequestsDataset();
             localStorage.setItem('blink_requests_v12', JSON.stringify(generated));
@@ -1338,7 +1443,10 @@
         function getStoredPosts() {
             const stored = localStorage.getItem('blink_posts_v12');
             if (stored) {
-                try { return JSON.parse(stored); } catch (e) {}
+                try { 
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length >= 90) return parsed;
+                } catch (e) {}
             }
             const generated = generatePostsDataset();
             localStorage.setItem('blink_posts_v12', JSON.stringify(generated));
@@ -1674,7 +1782,7 @@
                     title: title,
                     body: body,
                     author: authorName,
-                    date: '2026.10.28'
+                    date: '2026.10.31'
                 };
 
                 communityPosts.unshift(newPost);
@@ -1729,7 +1837,7 @@
                     qual: qual,
                     body: body,
                     status: "모집중",
-                    date: "2026.10.28"
+                    date: "2026.10.31"
                 };
 
                 requestList.unshift(newReq);
@@ -1740,6 +1848,29 @@
                 reqCurrentPage = 1;
                 renderRequestBoard();
             });
+
+            // Community Category Filter Event Handlers
+            const commCatBtns = document.querySelectorAll('.comm-cat-btn');
+            commCatBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    commCatBtns.forEach(b => {
+                        b.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+                    });
+                    btn.className = "comm-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-xs";
+                    commCategoryFilter = btn.getAttribute('data-cat') || 'ALL';
+                    commCurrentPage = 1;
+                    renderCommunityBoard();
+                });
+            });
+
+            const commSearchInput = document.getElementById('commSearchInput');
+            if (commSearchInput) {
+                commSearchInput.addEventListener('input', (e) => {
+                    commSearchQuery = e.target.value.trim();
+                    commCurrentPage = 1;
+                    renderCommunityBoard();
+                });
+            }
 
             // Render Community Board
             function renderCommunityBoard() {
