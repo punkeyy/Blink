@@ -1,0 +1,13 @@
+{
+  "name": "blink-community",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build:netlify": "npm run build && rm -rf public && mkdir public && cp -r index.html js dist public/ && (cp imagin*.jpg public/ 2>/dev/null || true)"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
